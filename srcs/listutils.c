@@ -6,7 +6,9 @@
 /*   By: georgesims <georgesims@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:57:29 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/06 11:57:30 by georgesims       ###   ########.fr       */
+/*   Updated: 2024/03/06 14:06:56 by georgesims       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../includes/minishell.h"
 
