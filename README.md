@@ -17,75 +17,75 @@ FONCTIONNEMENT:
 
 FONCTIONS: 
 
-# readline:
+## readline:
  Lit une ligne de texte depuis l'entrée standard, permettant à l'utilisateur de modifier cette ligne avec des touches de contrôle.
-# rl_clear_history:
+## rl_clear_history:
  Efface l'historique des commandes stockées par readline.
-# rl_on_new_line:
+## rl_on_new_line:
  Prépare readline à commencer une nouvelle ligne.
-# rl_replace_line:
+## rl_replace_line:
  Remplace le contenu de la ligne courante dans readline.
-# rl_redisplay:
+## rl_redisplay:
  Redessine la ligne courante dans l'interface readline.
-# add_history:
+## add_history:
  Ajoute une ligne à l'historique des commandes de readline.
-# access:
+## access:
  Vérifie les droits d'accès à un fichier.
-# fork:
+## fork:
  Crée un nouveau processus enfant qui est une copie du processus parent.
-# wait:
+## wait:
  Attend la fin d'exécution d'un processus enfant.
-# waitpid:
+## waitpid:
  Attend un processus enfant spécifique ou n'importe lequel.
-# wait3,
+## wait3,
  wait4: Variants de waitpid avec plus d'options et de récupération d'informations.
-# signal:
+## signal:
  Permet de gérer les signaux reçus par un processus.
-# sigaction:
+## sigaction:
  Fournit un contrôle plus précis sur le comportement lors de la réception de signaux.
-# sigemptyset,
+## sigemptyset,
  sigaddset: Initialisent et ajoutent des signaux à un ensemble de signaux.
-# kill:
+## kill:
  Envoie un signal à un processus spécifié.
-# exit:
+## exit:
  Termine l'exécution du programme courant.
-# getcwd:
+## getcwd:
  Obtient le chemin du répertoire courant.
-# chdir:
+## chdir:
  Change le répertoire courant.
-# stat,
+## stat,
  lstat, fstat: Récupèrent les informations sur un fichier.
-# unlink:
+## unlink:
  Supprime un lien vers un fichier, le supprimant s'il s'agit du dernier lien.
-# execve:
+## execve:
  Remplace le programme courant par un nouveau programme.
-# dup,
+## dup,
  dup2: Dupliquent un descripteur de fichier.
-# pipe:
+## pipe:
  Crée un tube (pipe) pour la communication entre processus.
-# opendir:
+## opendir:
  Ouvre un flux de répertoire.
-# readdir:
+## readdir:
  Lit une entrée dans un répertoire.
-# closedir:
+## closedir:
  Ferme un flux de répertoire ouvert.
-# strerror:
+## strerror:
  Retourne un message décrivant une erreur.
-# perror:
+## perror:
  Affiche un message décrivant la dernière erreur rencontrée.
-# isatty:
+## isatty:
  Vérifie si un descripteur de fichier est un terminal.
-# ttyname:
+## ttyname:
  Retourne le nom du terminal associé à un descripteur de fichier.
-# ttyslot:
+## ttyslot:
  Trouve le numéro d'emplacement du terminal.
-# ioctl:
+## ioctl:
  Manipule les paramètres du périphérique sous-jacent pour un descripteur de fichier.
-# getenv:
+## getenv:
  Récupère la valeur d'une variable d'environnement.
-# tcsetattr, tcgetattr: 
+## tcsetattr, tcgetattr: 
 Configurent les attributs du terminal.
-# tgetent,tgetflag, tgetnum, tgetstr, tgoto, tputs: 
+## tgetent,tgetflag, tgetnum, tgetstr, tgoto, tputs: 
 Fonctions de gestion de terminal dans la bibliothèque termcap pour le contrôle des capacités du terminal.
 
 
