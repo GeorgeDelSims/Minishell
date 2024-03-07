@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/07 11:13:51 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/07 11:43:43 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_cmd
     char            **args;
     int             append;
     struct s_cmd    *next;
-}
+}                   t_cmd;
 
 // Main data structure 
 typedef struct  s_data
