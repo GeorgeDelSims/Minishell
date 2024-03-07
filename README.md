@@ -15,6 +15,17 @@ FONCTIONNEMENT:
 - Une branche git pour chaque nouvelle fonctionnalité. On la teste, on la valide et on push sur le master. 
 - bien structurer le minishell.h 
 
+GITHUB MARCHE A SUIVRE : 
+
+1. Chacun clone le Repo sur sa machine avec git clone
+2. Chacun va créer sa propre branche avec la commande “git checkout -b <my_branch>”
+3. Chacun fait ses modifs en local puis les commit a sa propre branche avec git add + git commit
+4. Push sur le depot distant de notre branche avec “Git push origin <my_branch>”
+5. Creer une “pull request” -> aller sur le repo sur GitHub et cliquer sur “pull requests” -> “New pull request” -> <my_branch>
+6. Revoir les changements et fusionner la pull request
+7. Pull les changements vers la branche principale locale (le main sur nos machines individuelles). -> “git checkout main” -> “git pull origin main”
+
+
 FONCTIONS: 
 
 ## char* readline(const char *prompt)
