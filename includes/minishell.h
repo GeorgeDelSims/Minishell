@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: georgesims <georgesims@student.42.fr>      +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/06 17:10:49 by georgesims       ###   ########.fr       */
+/*   Updated: 2024/03/07 11:13:51 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,21 @@ typedef struct s_statement
     struct s_statement  *next;
 }                       t_statement;
 
+typedef struct s_cmd
+{
+    int             in;
+    int             out;
+    char            *cmd;
+    char            **args;
+    int             append;
+    struct s_cmd    *next;
+}
+
 // Main data structure 
 typedef struct  s_data
 {
     char            **envp;
+    char            **bin_paths;
     int             fd[2];
     t_statement     *statements;
 }                   t_data;

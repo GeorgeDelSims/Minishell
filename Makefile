@@ -3,42 +3,47 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: georgesims <georgesims@student.42.fr>      +#+  +:+       +#+         #
+#    By: gsims <gsims@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/06 11:36:48 by georgesims        #+#    #+#              #
-#    Updated: 2024/03/06 12:10:51 by georgesims       ###   ########.fr        #
+#    Updated: 2024/03/07 09:45:20 by gsims            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-UTILS = lstutils utils
+NAME = minishell
+CC = gcc 
+CFLAGS = -Wall -Wextra -Werror
+UTILS = listutils
 PARSING = parsing
+MAIN = main init
+LIBFT = ./libft/libft.a
 
 SRCS_DIR = srcs
-# Correct the use of curly braces for variable reference
 SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(UTILS)))\
 	$(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(PARSING)))\
+	$(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(MAIN)))\
 
-OBJ_DIR = obj
 # Convert source file names to object file names in the OBJ_DIR directory
+OBJ_DIR = obj
 OBJS = $(SRCS:$(SRCS_DIR)/%.c=$(OBJ_DIR)/%.o)
-
-all: $(NAME)
 
 # Rule to build the executable: depends on object directory, object files, and the LIBFT library
 # Compiles the object files and LIBFT library into the executable, linking with readline library
-$(NAME): $(OBJ_DIR) $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -lreadline -o $(NAME)
+all: $(NAME)
 
 $(LIBFT):
 	$(MAKE) -C ./libft
+
+$(NAME): $(OBJ_DIR) $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJS) -L./libft  -lft -lreadline -o $(NAME)
 
 $(OBJ_DIR): 
 	mkdir -p $(OBJ_DIR)
 
 # Generic rule to compile .c files into .o files, placing them in the object directory
-# $< is the name of the prerequisite (the .c file), and $@ is the name of the target (the .o file)
 $(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@ $(LINK)
+	$(CC) -c $(CFLAGS) -c $< -o $@ $(LINK)
+# $< is the name of the prerequisite (the .c file), and $@ is the name of the target (the .o file)
 
 clean:
 	$(MAKE) clean -C ./libft
