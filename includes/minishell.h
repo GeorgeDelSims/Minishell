@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/11 15:16:34 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/11 17:48:16 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,34 +21,37 @@
 # include <readline/history.h>
 # include <stdlib.h>
 
-
-/*- STRUCTURES -*/
-
-// Statement linked list (for history)
-// typedef struct s_statement
-// {
-    // int                 ac;
-    // char                **av;
-    // struct s_statement  *next;
-// }                       t_statement;
-// 
-typedef struct s_cmd
+typedef enum
 {
+    UNDEFINED, // pas initialisé
+    CMD, // cat 
+    BUILTIN, // commande built-in
+    FILE, // filename
+    ARG, // -r
+    INPUT_REDIRECT, // < 
+    OUTPUT_REDIRECT, // > 
+    APPEND, // >>
+    HEREDOC, // << 
+    PIPE, // |
+}   type;
+
+typedef struct s_token
+{
+    char            *content;
     int             in;
     int             out;
-    char            *cmd;
     const char      *cmd_path;
     char            **args;
-    int             append;
-    struct s_cmd    *next;
-}                   t_cmd;
+    int             type;
+    struct s_token  *next;
+}                   t_token;
 
 // Main data structure 
 typedef struct  s_data
 {
     char            **envp;
     char            **bin_paths;
-    t_cmd           *cmds;  // liste chainee de commandes
+    t_token         *tokens;  // liste chainee de commandes
     int             fd[2];
     // t_statement     *statements;
 }                   t_data;
