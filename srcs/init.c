@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:10:58 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/11 18:00:57 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/12 10:01:24 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ t_data	*init_minishell(int ac, char *av[], const char *envp[])
 	if (!data)
 		return (ft_error("malloc error on data structure"));
 	init_binpaths(data);
-	// Il faudra initialiser la liste chainee de tokens ici 
+	// Il faudra initialiser les listes chainees de tokens ici
 	return (data);
 }

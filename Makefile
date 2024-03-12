@@ -6,7 +6,7 @@
 #    By: gsims <gsims@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/06 11:36:48 by georgesims        #+#    #+#              #
-#    Updated: 2024/03/11 15:00:45 by gsims            ###   ########.fr        #
+#    Updated: 2024/03/12 14:34:33 by gsims            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 UTILS = listutils error utils
-PARSING = parsing
+PARSING = parsing parsing_tokens
 MAIN = main init exec
 
 LIBFT = ./libft/libft.a

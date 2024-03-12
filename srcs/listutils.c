@@ -6,11 +6,50 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:57:29 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/12 09:28:11 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/12 13:09:46 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+// Fonction pour creer nouvelle list (ou subline de tokens)
+t_liste	*ft_list_new(char *subline)
+{
+	t_liste	*new;
+
+	new = (t_liste *)malloc(sizeof(t_liste));
+	if (!new)
+		return (NULL);
+	new->subline = malloc(ft_strlen(subline) + 1);
+	if (new->subline)
+		new->subline = ft_strdup(subline);
+	else
+	{
+		free(new);
+		return (NULL);
+	}
+	new->token = NULL;
+	new->next = NULL;
+	return (new);
+}
+
+// fonction pour ajouter un deuxieme node a la liste de sublines
+void	ft_add_back_list(t_liste **list, t_liste *new)
+{
+	t_liste		*curr;
+
+	if (!list || !new)
+		return ;
+	if (*list == NULL)
+	{
+		*list = new;
+		return ;
+	}
+	curr = *list;
+	while (curr->next)
+		curr = curr->next;
+	curr->next = new;
+}
 
 // Fonction pour creer nouveau node ou nouvelle liste chainee de commandes
 t_token	*ft_token_new(char *content)
@@ -20,7 +59,9 @@ t_token	*ft_token_new(char *content)
 	new = (t_token *)malloc(sizeof(t_token));
 	if (!new)
 		return (NULL);
-	new->content = content;
+	new->content = malloc(ft_strlen(content) + 1);
+	if (new->content)
+		new->content = ft_strdup(content);
 	new->in = 0;
 	new->out = 1;
 	new->cmd_path = NULL;
@@ -37,13 +78,13 @@ void	ft_add_back(t_token **token, t_token *new)
 	
 	if (!token || !new)
 		return ;
-	if (*token = NULL)
+	if (*token == NULL)
 	{
 		*token = new;
 		return ;
 	}
 	curr = *token;
-	while (curr->next && curr->content != '|')
+	while (curr->next)
 		curr = curr->next;
 	curr->next = new;
 }

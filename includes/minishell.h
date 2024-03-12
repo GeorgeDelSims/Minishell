@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/12 09:36:06 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/12 14:33:52 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,21 @@
 # include <readline/history.h>
 # include <stdlib.h>
 
+# define RED        "\033[91;1m"
+# define GREEN        "\033[92;1m"
+# define YELLOW        "\033[93;1m"
+# define BLUE        "\033[94;1m"
+# define VIOLET        "\033[95;1m"
+# define ORANGE        "\033[38;2;255;165;0;1m"
+# define TURQ        "\033[96;1m"
+# define CLEAR        "\033[0m"
+
 typedef enum
 {
     UNDEFINED, // pas initialisé
     CMD, // cat 
     BUILTIN, // commande built-in
-    FILE, // filename
+    FILE_NAME, // filename
     ARG, // -r
     INPUT_REDIRECT, // < 
     OUTPUT_REDIRECT, // > 
@@ -34,6 +43,7 @@ typedef enum
     HEREDOC, // << 
     PIPE, // |
 }   type;
+
 
 // cat > hello 
 typedef struct s_token
@@ -48,20 +58,20 @@ typedef struct s_token
 }                   t_token;
 
 
-typedef struct s_list
+typedef struct s_liste
 {
     t_token         *token;
-    struct s_list   *next;
-}                   t_list;
+    char            *subline;
+    struct s_liste  *next;
+}                   t_liste;
 
 // Main data structure 
 typedef struct  s_data
 {
     char            **envp;
     char            **bin_paths;
-    t_list          *list;  // listes chainees de tokens 
+    t_liste         *list;  // listes chainees de tokens 
     int             fd[2];
-    // t_statement     *statements;
 }                   t_data;
 
 
@@ -72,20 +82,29 @@ typedef struct  s_data
 t_data	*init_minishell(int ac, char *av[], const char *envp[]);
 
 /*----listutils.c----*/
+t_liste	    *ft_list_new(char *subline);
+t_token	    *ft_token_new(char *content);
+void	    ft_add_back_list(t_liste **list, t_liste *new);
+void	    ft_add_back(t_token **token, t_token *new);
+void	    ft_add_front(t_token **token, t_token *new);
 
 
 /*----utils.c----*/
 void	ft_print_array(char **array);
+void	ft_print_lists(t_data *data);
 
 /*----exec.c----*/
 int     ft_execute(t_data *data, char *const *envp);
+int     ft_access(t_data *data);
 
 /*----parsing.c----*/
-int     ft_access(t_data *data);
+void	parse(char *line, t_data *data);
+
+/*----parsing_tokens.c----*/
+void	create_tokens(t_liste *list, char *subline);
 
 /*----error.c----*/
 void	*ft_error(const char *msg);
-
 
 
 #endif
