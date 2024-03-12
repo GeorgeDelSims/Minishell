@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:57:29 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/11 17:55:17 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/12 09:28:11 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_add_back(t_token **token, t_token *new)
 		return ;
 	}
 	curr = *token;
-	while (curr->next)
+	while (curr->next && curr->content != '|')
 		curr = curr->next;
 	curr->next = new;
 }
