@@ -6,7 +6,7 @@
 /*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 08:26:05 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/13 08:57:54 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/13 09:22:32 by mlepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,30 +31,28 @@ int	c_s(char *cl, char *s)
 		return (1);
 	return (0);
 }
-int	ft_error_syntax(char *msg)
+void	ft_error_syntax(char *msg)
 {
 	printf("minishell: %s\n", msg);
-	return (1);
 }
 
-int	check_pipe(char **cl, int i)
+void	check_pipe(char **cl, int i)
 {
 	if (i == 0 && c_s(cl[i], "|"))
-		return (ft_error_syntax("syntax error near unexpected token `|'"));
+		ft_error_syntax("syntax error near unexpected token `|'");
 	else if (i == 0 && c_s(cl[i], "||"))
-		return (ft_error_syntax("syntax error near unexpected token `||'"));
+		ft_error_syntax("syntax error near unexpected token `||'");
 	else if (i != 0)
 	{
 		if (c_s(cl[i], "|") && c_s(cl[i + 1], "|"))
-			return (ft_error_syntax("syntax error near unexpected token `|'"));
+			ft_error_syntax("syntax error near unexpected token `|'");
 		else if (c_s(cl[i], "|") && c_s(cl[i + 1], "||"))
-			return (ft_error_syntax("syntax error near unexpected token `||'"));
+			ft_error_syntax("syntax error near unexpected token `||'");
 		else if (c_s(cl[i], "|||"))
-			return (ft_error_syntax("syntax error near unexpected token `|'"));
+			ft_error_syntax("syntax error near unexpected token `|'");
 		else if (c_s(cl[i], "||||"))
-			return (ft_error_syntax("syntax error near unexpected token `||'"));
+			ft_error_syntax("syntax error near unexpected token `||'");
 	}
-	return (0);
 }
 
 void	check_synthax(char *line)
@@ -77,8 +75,7 @@ void	check_synthax(char *line)
 			else if (cl[i + 1][0] == '<')
 				ft_error_syntax("syntax error near unexpected token `<'");
 		}
-		if (!check_pipe(cl, i))
-			break ;
+		check_pipe(cl, i);
 		i++;
 	}
 	ft_free_array(cl);
