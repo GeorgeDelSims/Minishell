@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:20:58 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/13 08:35:12 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/13 10:44:03 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	ft_print_lists(t_data *data)
 		{
 			if (curr_token->content)
 				printf("%20s\n", curr_token->content);
+				printf("%20s\n", curr_token->type);
 			curr_token = curr_token->next;
 		}
 		curr_list = curr_list->next;

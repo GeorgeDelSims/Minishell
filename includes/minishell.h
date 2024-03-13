@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/13 08:58:15 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/13 10:58:13 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,11 @@ typedef enum
 {
     UNDEFINED, // pas initialisé
     CMD, // cat 
+    OPTION, // -rf -l -c
     BUILTIN, // commande built-in
     FILE_NAME, // filename
-    ARG, // -r
-    INPUT_REDIRECT, // < 
-    OUTPUT_REDIRECT, // > 
-    APPEND, // >>
-    HEREDOC, // << 
-    PIPE, // |
+    ARG, //  texte 
+    META, // > ; < ; << ; | etc 
 }   type;
 
 
@@ -50,7 +47,7 @@ typedef struct s_token
 {
     char            *content; // "cat"
     int             in; // " STDIN = 0"
-    int             out; // "fd in de "hello" "
+    int             out; // "STOUT = 1"
     const char      *cmd_path; // "usr/bin/cat"
     char            **args; // pas d'args
     int             type; // CMD 

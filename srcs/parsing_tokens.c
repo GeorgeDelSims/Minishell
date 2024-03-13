@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:32:11 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/12 14:45:58 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/13 09:52:16 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	create_tokens(t_liste *list, char *subline)
 
 	i = 0;
 	number_of_words = ft_count_words(subline);
-	printf("number_of_words : %d\n", number_of_words);
 	while (number_of_words > 0)
 	{
 		word = (char *)malloc(sizeof(char) * next_word_size(subline, i) + 1);
