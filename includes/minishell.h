@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/12 14:33:52 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/13 08:58:15 by mlepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct  s_data
 
 /*- SRCS -*/
 /*----main.c----*/
+void    ft_free_array(char **array);
 
 /*----init.c----*/
 t_data	*init_minishell(int ac, char *av[], const char *envp[]);
@@ -88,6 +89,8 @@ void	    ft_add_back_list(t_liste **list, t_liste *new);
 void	    ft_add_back(t_token **token, t_token *new);
 void	    ft_add_front(t_token **token, t_token *new);
 
+/*----check.c----*/
+void	    check_synthax(char *line);
 
 /*----utils.c----*/
 void	ft_print_array(char **array);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gsims <gsims@student.42.fr>                +#+  +:+       +#+         #
+#    By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/06 11:36:48 by georgesims        #+#    #+#              #
-#    Updated: 2024/03/12 14:34:33 by gsims            ###   ########.fr        #
+#    Updated: 2024/03/13 08:28:41 by mlepesqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME = minishell
 CC = gcc 
 CFLAGS = -Wall -Wextra -Werror
 
+CHECKER = check
 UTILS = listutils error utils
 PARSING = parsing parsing_tokens
 MAIN = main init exec
@@ -26,6 +27,7 @@ SRCS_DIR = srcs
 SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(UTILS)))\
 	$(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(PARSING)))\
 	$(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(MAIN)))\
+	$(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(CHECKER)))\
 
 # Convert source file names to object file names in the OBJ_DIR directory
 OBJ_DIR = obj

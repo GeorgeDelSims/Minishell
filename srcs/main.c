@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:41:01 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/12 09:47:00 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/13 08:58:26 by mlepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int main(int ac, char *av[], const char *envp[])
         line = readline("minishell> ");
         if (line && *line) 
             add_history(line);
+        check_synthax(line);
         parse(line, data);
         free(line); // Il y a un malloc dans readline()
         if (ft_strncmp(line, "exit", ft_strlen("exit")) == 0)
