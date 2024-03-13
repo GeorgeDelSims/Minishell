@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/13 10:58:13 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/13 11:18:10 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,11 @@ void	create_tokens(t_liste *list, char *subline);
 
 /*----error.c----*/
 void	*ft_error(const char *msg);
+
+/*----error.c----*/
+void	free_lists(t_data *data);
+void	ft_free(void *ptr);
+void	ft_free_array(char **array);
 
 
 #endif

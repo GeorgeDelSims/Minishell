@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:41:01 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/13 09:58:57 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/13 12:06:54 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int main(int ac, char *av[], const char *envp[])
         free(line); // Il y a un malloc dans readline()
         if (ft_strncmp(line, "exit", ft_strlen("exit")) == 0)
             break ;
-        
+        free_lists(data);
         // data->cmds->cmd = line; // Juste pour tester la fonction Exec
         // ft_execute(data, (char* const*)envp);
     }
