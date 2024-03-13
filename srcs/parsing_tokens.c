@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:32:11 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/13 09:52:16 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/13 13:54:41 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ static int	next_word_size(char *subline, int i)
 	{
 		if (subline[i] == ' ')
 			return (i - start);
+		// if (subline[i] == '\"')
+		// {
+			// 
+			// while (subl)
+		// }
 		i++;
 	}
 	return (i - start);

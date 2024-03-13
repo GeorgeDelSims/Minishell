@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:20:58 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/13 10:44:03 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/13 12:12:11 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,9 @@ void	ft_print_lists(t_data *data)
 		while (curr_token)
 		{
 			if (curr_token->content)
-				printf("%20s\n", curr_token->content);
-				printf("%20s\n", curr_token->type);
+				printf("type : %3d  | %10s\n", curr_token->type, curr_token->content);
 			curr_token = curr_token->next;
 		}
 		curr_list = curr_list->next;
 	}
-}
-
-void	ft_free_array(char **array)
-{
-	int	i;
-
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+         #
+#    By: gsims <gsims@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/06 11:36:48 by georgesims        #+#    #+#              #
-#    Updated: 2024/03/13 08:28:41 by mlepesqu         ###   ########.fr        #
+#    Updated: 2024/03/13 11:18:19 by gsims            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 CHECKER = check
-UTILS = listutils error utils
+UTILS = listutils error utils free
 PARSING = parsing parsing_tokens
 MAIN = main init exec
 

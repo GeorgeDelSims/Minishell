@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:57:29 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/13 09:50:36 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/13 13:27:28 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ t_token	*ft_token_new(char *content)
 	// new->content = malloc(ft_strlen(content) + 1);
 	// if (new->content)
 	new->content = ft_strdup(content);
-	new->in = 0;
-	new->out = 1;
-	new->cmd_path = NULL;
-	new->args = NULL;
+	// new->in = 0;
+	// new->out = 1;
+	// new->cmd_path = NULL;
+	// new->args = NULL;
 	new->type = 0;
 	new->next = NULL;
 	return (new);
