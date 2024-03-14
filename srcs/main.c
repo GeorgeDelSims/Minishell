@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:41:01 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/13 13:06:24 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/14 14:54:59 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int    ft_quit(char *line)
+{
+    free(line);
+    return (1);
+}
 
 int main(int ac, char *av[], const char *envp[])
 {
@@ -25,12 +31,12 @@ int main(int ac, char *av[], const char *envp[])
         line = readline("minishell> ");
         if (line && *line) 
             add_history(line);
-        check_synthax(line);
+        //check_syntax(line);
         // replace dollar signs by env values
         parse(line, data);
-        free(line); // Il y a un malloc dans readline()
-        if (ft_strncmp(line, "exit", ft_strlen("exit")) == 0)
+        if (ft_strncmp(line, "exit", ft_strlen("exit")) == 0 && ft_quit(line))
             break ;
+        free(line); // Il y a un malloc dans readline()
         free_lists(data);
         // data->cmds->cmd = line; // Juste pour tester la fonction Exec
         // ft_execute(data, (char* const*)envp);

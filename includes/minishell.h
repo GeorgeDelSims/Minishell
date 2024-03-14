@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/14 11:20:48 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/14 14:39:46 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,14 @@
 # define CLEAR        "\033[0m"
 # define SINGLE_QUOTE 1
 # define DOUBLE_QUOTE 2
-
-typedef enum
-{
-    UNDEFINED, // pas initialisé
-    CMD, // cat 
-    BUILTIN, // commande built-in
-    OPTION, // -rf -l -c
-    ARG, //  texte 
-    META, // > ; < ; << ; | etc 
-    FILE_NAME, // filename
-}   type;
-
+# define UNDEFINED	0
+# define TXT		1
+# define CMD		2
+# define BUILTIN	3
+# define OPTION		4
+# define ARG		5
+# define MET		6
+# define FILENAME	7
 
 // cat > hello 
 typedef struct s_token
@@ -80,6 +76,7 @@ void    ft_free_array(char **array);
 
 /*----init.c----*/
 t_data	*init_minishell(int ac, char *av[], const char *envp[]);
+void	init_types(t_data *d);
 
 /*----listutils.c----*/
 t_liste	    *ft_list_new(char *subline);
@@ -87,9 +84,10 @@ t_token	    *ft_token_new(char *content);
 void	    ft_add_back_list(t_liste **list, t_liste *new);
 void	    ft_add_back(t_token **token, t_token *new);
 void	    ft_add_front(t_token **token, t_token *new);
+int	        token_size(t_token *token);
 
 /*----check.c----*/
-void	    check_synthax(char *line);
+void	    check_syntax(char *line);
 
 /*----utils.c----*/
 void	ft_print_array(char **array);

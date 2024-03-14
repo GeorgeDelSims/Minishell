@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gsims <gsims@student.42.fr>                +#+  +:+       +#+         #
+#    By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/06 11:36:48 by georgesims        #+#    #+#              #
-#    Updated: 2024/03/13 11:18:19 by gsims            ###   ########.fr        #
+#    Updated: 2024/03/14 14:42:42 by mathieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,9 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 CHECKER = check
-UTILS = listutils error utils free
+UTILS = listutils listutils2 error utils free
 PARSING = parsing parsing_tokens
-MAIN = main init exec
+MAIN = main init exec init_types
 
 LIBFT = ./libft/libft.a
 READLINE_DIR = $(HOME)/.brew/opt/readline/include
