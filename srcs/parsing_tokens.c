@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:32:11 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/14 12:13:43 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/14 12:57:38 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ void	append_token(t_liste *list, char *subline, int start_of_token, int end_of_t
 	char 	*token;
 	int		token_size;
 
-	token_size = end_of_token - start_of_token;
+	printf("append_token was called\n");
+	token_size = end_of_token - start_of_token + 1;
 	token = malloc(sizeof(char) * (token_size + 1));
 	if (!token)
 		return ;
-	ft_strlcpy(token, subline + start_of_token, token_size);
+	ft_strlcpy(token, subline + start_of_token, token_size + 1);
 	printf("token = %s\n", token);
 	ft_add_back(&list->token, ft_token_new(token));
 }
@@ -36,6 +37,7 @@ void	create_tokens(t_liste *list, char *subline)
 
 	i = 0;
 	start_of_token = 0;
+	quote = 0;
 	while (subline[i])
 	{
 		while (subline[i] == ' ')
@@ -73,7 +75,7 @@ void	create_tokens(t_liste *list, char *subline)
 				start_of_token = i;
 			}
 		}
-		else if (subline[i] == ' ' && quote == 0) 
+		if (subline[i] == ' ' && quote == 0) 
 		{
 			if (start_of_token != i)
 				append_token(list, subline, start_of_token, i);
@@ -81,7 +83,7 @@ void	create_tokens(t_liste *list, char *subline)
 				i++;
 			start_of_token = i;
 		}
-		else if ((subline[i] == '\"' && quote == DOUBLE_QUOTE) || (subline[i] == '\'' && quote == SINGLE_QUOTE))
+		if ((subline[i] == '\"' && quote == DOUBLE_QUOTE) || (subline[i] == '\'' && quote == SINGLE_QUOTE))
 		{
 			append_token(list, subline, start_of_token, i);
 			i++;
