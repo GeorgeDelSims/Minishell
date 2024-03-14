@@ -6,57 +6,94 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:32:11 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/13 18:13:28 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/14 12:13:43 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 
-/*
-
-static int	next_word_size(char *subline, int i)
+void	append_token(t_liste *list, char *subline, int start_of_token, int end_of_token)
 {
-	int		len;
-	char	quote;
-	
-	len = 0;
-	quote = 0;
+	char 	*token;
+	int		token_size;
+
+	token_size = end_of_token - start_of_token;
+	token = malloc(sizeof(char) * (token_size + 1));
+	if (!token)
+		return ;
+	ft_strlcpy(token, subline + start_of_token, token_size);
+	printf("token = %s\n", token);
+	ft_add_back(&list->token, ft_token_new(token));
+}
+
+
+void	create_tokens(t_liste *list, char *subline)
+{	
+	int		i;
+	int		quote;
+	int		start_of_token;
+
+	i = 0;
+	start_of_token = 0;
 	while (subline[i])
 	{
-		if ((subline[i] == '\"' || subline[i] == '\'') && quote == 0)
+		while (subline[i] == ' ')
+			i++;
+		if (subline[i] == '\'' && quote == 0) // begin single quotes (START OF TOKEN)
 		{
-			if (i == 0)
+			quote = SINGLE_QUOTE;
+			start_of_token = i;
+			i++;
+		}
+		else if (subline[i] == '\"' && quote == 0) // begin double quotes " "
+		{
+			quote = DOUBLE_QUOTE;
+			start_of_token = i;
+			i++;
+		}
+		if ((subline[i] == '>' || subline[i] == '<') && quote == 0) // not in quotes and meets seperator
+		{
+			if ((subline[i] == '>' && subline[i + 1] == '>') || (subline[i] == '>' && subline[i + 1] == '>'))
 			{
-				i++;
-				quote = subline[i];
-				break ;
+				if (start_of_token != i)
+					append_token(list, subline, start_of_token, i);
+				start_of_token = i;
+				i += 2;
+				append_token(list, subline, start_of_token, i);
+				start_of_token = i;			
 			}
 			else
 			{
-				quote = subline[i];
+				if (start_of_token != i)
+					append_token(list, subline, start_of_token, i);
+				start_of_token = i;
 				i++;
+				append_token(list, subline, start_of_token, i);
+				start_of_token = i;
 			}
 		}
-		else if (subline[i] == quote)
+		else if (subline[i] == ' ' && quote == 0) 
 		{
-			quote = 0;
-			i++;
-			break ;
+			if (start_of_token != i)
+				append_token(list, subline, start_of_token, i);
+			while (subline[i] == ' ')
+				i++;
+			start_of_token = i;
 		}
-		else if (subline[i] == ' ' && quote == 0)
-			break ;
-		else
+		else if ((subline[i] == '\"' && quote == DOUBLE_QUOTE) || (subline[i] == '\'' && quote == SINGLE_QUOTE))
 		{
+			append_token(list, subline, start_of_token, i);
 			i++;
-			len++;
+			start_of_token = i;
 		}
+		i++;
 	}
-	printf("quote : %c\n", quote);
-	printf("i : %d\n", i);
-	return (len);
-}*/
+}
 
+
+
+/*
 static int	next_word_size(char *subline, int i)
 {
 	int		len;
@@ -126,36 +163,4 @@ void	create_tokens(t_liste *list, char *subline)
 	}
 }
 
-
-
-/*
-static int	ft_count_words(char *subline)
-{
-	int		count;
-	char	quote;
-
-	if (!*subline)
-		return (0);
-	count = 0;
-	quote = 0;
-	while (*subline)
-	{
-		while (*subline == ' ' && quote == 0)
-			subline++;
-		if (*subline == ' ' && quote == 0)
-			break ;
-		if ((*subline == '\"' || *subline == '\'') && quote == 0)
-			quote = *subline;
-		else if (*subline == quote)
-			quote = 0;
-		count++;
-        while (*subline && (quote != 0 || *subline != ' ')) 
-		{
-            if (*subline == quote) 
-				quote = 0;
-			subline++;
-        }
-	}
-	return (count);
-}
 */

@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/13 13:46:38 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/14 11:20:48 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,18 @@
 # define ORANGE        "\033[38;2;255;165;0;1m"
 # define TURQ        "\033[96;1m"
 # define CLEAR        "\033[0m"
+# define SINGLE_QUOTE 1
+# define DOUBLE_QUOTE 2
 
 typedef enum
 {
     UNDEFINED, // pas initialisé
     CMD, // cat 
-    OPTION, // -rf -l -c
     BUILTIN, // commande built-in
-    FILE_NAME, // filename
+    OPTION, // -rf -l -c
     ARG, //  texte 
     META, // > ; < ; << ; | etc 
+    FILE_NAME, // filename
 }   type;
 
 
@@ -59,6 +61,7 @@ typedef struct s_liste
     int             out; // "STOUT = 1"
     const char      *cmd_path; // "usr/bin/cat"
     char            **args; // pas d'args
+    int             *delimiter_array; 
     struct s_liste  *next;
 }                   t_liste;
 
