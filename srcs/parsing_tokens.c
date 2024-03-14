@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:32:11 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/14 12:57:38 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/14 13:59:39 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void	append_token(t_liste *list, char *subline, int start_of_token, int end_of_t
 	char 	*token;
 	int		token_size;
 
-	printf("append_token was called\n");
-	token_size = end_of_token - start_of_token + 1;
+	token_size = end_of_token - start_of_token;
 	token = malloc(sizeof(char) * (token_size + 1));
 	if (!token)
 		return ;
@@ -40,23 +39,28 @@ void	create_tokens(t_liste *list, char *subline)
 	quote = 0;
 	while (subline[i])
 	{
-		while (subline[i] == ' ')
-			i++;
 		if (subline[i] == '\'' && quote == 0) // begin single quotes (START OF TOKEN)
 		{
 			quote = SINGLE_QUOTE;
-			start_of_token = i;
 			i++;
+			start_of_token = i;
 		}
 		else if (subline[i] == '\"' && quote == 0) // begin double quotes " "
 		{
 			quote = DOUBLE_QUOTE;
-			start_of_token = i;
 			i++;
+			start_of_token = i;
 		}
-		if ((subline[i] == '>' || subline[i] == '<') && quote == 0) // not in quotes and meets seperator
+		else if ((subline[i] == '\"' && quote == DOUBLE_QUOTE) || (subline[i] == '\'' && quote == SINGLE_QUOTE))
 		{
-			if ((subline[i] == '>' && subline[i + 1] == '>') || (subline[i] == '>' && subline[i + 1] == '>'))
+			append_token(list, subline, start_of_token, i);
+			quote = 0;
+			i++;
+			start_of_token = i;
+		}
+        else if ((subline[i] == '>' || subline[i] == '<') && quote == 0)
+        {
+            if ((subline[i] == '>' && subline[i + 1] == '>') || (subline[i] == '<' && subline[i + 1] == '<'))
 			{
 				if (start_of_token != i)
 					append_token(list, subline, start_of_token, i);
@@ -75,7 +79,7 @@ void	create_tokens(t_liste *list, char *subline)
 				start_of_token = i;
 			}
 		}
-		if (subline[i] == ' ' && quote == 0) 
+		else if (subline[i] == ' ' && quote == 0) 
 		{
 			if (start_of_token != i)
 				append_token(list, subline, start_of_token, i);
@@ -83,14 +87,11 @@ void	create_tokens(t_liste *list, char *subline)
 				i++;
 			start_of_token = i;
 		}
-		if ((subline[i] == '\"' && quote == DOUBLE_QUOTE) || (subline[i] == '\'' && quote == SINGLE_QUOTE))
-		{
-			append_token(list, subline, start_of_token, i);
+		else
 			i++;
-			start_of_token = i;
-		}
-		i++;
 	}
+    if (i > start_of_token && quote == 0)
+        append_token(list, subline, start_of_token, i);
 }
 
 
