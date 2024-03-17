@@ -6,7 +6,7 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:41:01 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/14 14:54:59 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/14 15:41:25 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ int main(int ac, char *av[], const char *envp[])
         // data->cmds->cmd = line; // Juste pour tester la fonction Exec
         // ft_execute(data, (char* const*)envp);
     }
-    rl_clear_history();
+    clear_history();
     return (EXIT_SUCCESS);
 }

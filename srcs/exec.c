@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:26:30 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/13 13:44:31 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/15 18:03:34 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 // int	ft_access(t_data *data)
 // {
-	// int		i;
-	// char 	*path;
-	// 
-	// i = 0;
-	// while (data->bin_paths[i])
-	// {
-		// path = ft_strjoin(data->bin_paths[i], data->list->token->content);		
-		// if (access(path, X_OK) == 0)
-		// {
-			// data->list->token->cmd_path = (const char *)path;
-			// return (1);
-		// }	
-		// free(path);
-		// i++;
-	// }
-	// return (0);
+// 	int		i;
+// 	char	*path;
+
+// 	i = 0;
+// 	while (data->bin_paths[i])
+// 	{
+// 		path = ft_strjoin(data->bin_paths[i], data->list->token->content);		
+// 		if (access(path, X_OK) == 0)
+// 		{
+// 			data->list->token->cmd_path = (const char *)path;
+// 			return (1);
+// 		}
+// 		free(path);
+// 		i++;
+// 	}
+// 	return (0);
 // }
 // 
 // 

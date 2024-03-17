@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   listutils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:57:29 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/13 13:27:28 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/15 13:16:30 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ t_token	*ft_token_new(char *content)
 	// new->cmd_path = NULL;
 	// new->args = NULL;
 	new->type = 0;
+	new->prev = NULL;
 	new->next = NULL;
 	return (new);
 }
@@ -87,6 +88,7 @@ void	ft_add_back(t_token **token, t_token *new)
 	while (curr->next)
 		curr = curr->next;
 	curr->next = new;
+	new->prev = curr;
 }
 
 // Ajouter node au debut de la liste de tokens
@@ -95,6 +97,8 @@ void	ft_add_front(t_token **token, t_token *new)
 	if (!token || !new)
 		return ;
 	new->next = *token;
+	if (*token)
+		(*token)->prev = new;
 	*token = new;
 }
 

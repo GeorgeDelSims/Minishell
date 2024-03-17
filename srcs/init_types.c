@@ -6,31 +6,45 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 11:05:02 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/14 14:43:44 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/17 10:58:07 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	is_meta(char content)
+int	what_is_this(t_token *token)
 {
-	if(content == 45)
-		return (OPTION);
-	if(content == 60 || content == 62)
-		return (MET);
-	return (ARG);
+	int		res;
+	t_token	*tmp;
+
+	res = 0;
+	tmp = token;
+	while (tmp)
+	{
+		if (tmp->content[0] == 45 && tmp->prev && tmp->prev->type != OPTION)
+			tmp->type = OPTION;
+		else if (tmp->content[0] == 60 || tmp->content[0] == 62)
+		{
+			tmp->type = MET;
+			res++;
+		}
+		else
+			tmp->type = TXT;
+		tmp = tmp->next;
+	}
+	return (res);
 }
 
 int	is_builtin(char *content)
 {
 	int	s;
-	
+
 	s = ft_strlen(content);
 	if (!(ft_strncmp(content, "echo", s)) || !(ft_strncmp(content, "env", s))
 		|| !(ft_strncmp(content, "pwd", s)) || !(ft_strncmp(content, "cd", s))
-			|| !(ft_strncmp(content, "unset", s))
-				|| !(ft_strncmp(content, "export", s))
-					|| !(ft_strncmp(content, "exit", s)))
+		|| !(ft_strncmp(content, "unset", s))
+		|| !(ft_strncmp(content, "export", s))
+		|| !(ft_strncmp(content, "exit", s)))
 		return (BUILTIN);
 	else
 		return (CMD);
@@ -40,32 +54,22 @@ void	init_types_utils(t_token *token)
 {
 	t_token	*tmp;
 	int		i;
-	int		size;
 
 	i = 0;
-	size = token_size(token) - 1;
+	token->size = token_size(token);
 	tmp = token;
-	while(tmp)
+	what_is_this(tmp);
+	while (tmp)
 	{
-		if (is_meta(tmp->content[0]) == MET)
-			tmp->type = MET;
-		else if (i == 0 && is_meta(tmp->content[0]) == ARG)
+		if (i == 0 && tmp->type == TXT)
 			tmp->type = is_builtin(tmp->content);
-		else if (i == size && is_meta(tmp->content[0]) == ARG)
+		else if (i > 0 && tmp->prev->type == MET)
 			tmp->type = FILENAME;
-		else if (i != 0 && is_meta(tmp->content[0]) != MET)
-			tmp->type = is_meta(tmp->content[0]);
-		if (i == 0 && (!ft_strncmp(tmp->content, "echo"
-			, ft_strlen(tmp->content)) || !ft_strncmp(tmp->content, "printf"
-				, ft_strlen(tmp->content))) && size == 1)
-		{
-			tmp->next->type = ARG;
-			break ;
-		}
 		tmp = tmp->next;
 		i++;
 	}
 }
+
 
 void	init_types(t_data *d)
 {
