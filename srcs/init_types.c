@@ -6,7 +6,7 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 11:05:02 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/17 10:58:07 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/17 20:34:52 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	init_types_utils(t_token *token)
 	{
 		if (i == 0 && tmp->type == TXT)
 			tmp->type = is_builtin(tmp->content);
-		else if (i > 0 && tmp->prev->type == MET)
+		else if (i > 0 && tmp->prev->type == MET && tmp->type != MET)
 			tmp->type = FILENAME;
 		tmp = tmp->next;
 		i++;

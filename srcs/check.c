@@ -6,7 +6,7 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 08:26:05 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/17 10:15:17 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/17 20:36:50 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@
 // 		return (1);
 // 	return (0);
 // }
-// int	ft_error_syntax(char *msg, int i)
-// {
-// 	if (i == 0)
-// 		printf("minishell: syntax error near unexpected token %s\n", msg);
-// 	else if (i == 1)
-// 		printf("minishell: %s\n", msg);
-// 	return (1);
-// }
+int	ft_error_syntax(char *msg, int i)
+{
+	if (i == 0)
+		printf("minishell: syntax error near unexpected token `%s'\n", msg);
+	else if (i == 1)
+		printf("minishell: %s\n", msg);
+	return (1);
+}
 
 // int	check_pipe(char **cl, int i)
 // {
@@ -93,3 +93,23 @@
 // 	}
 // 	ft_free_array(cl);
 // }
+
+void	check_syntax(t_data *d)
+{
+	t_liste	*tmp;
+	t_token	*tmp_t;
+
+	tmp = d->list;
+	while (tmp)
+	{
+		tmp_t = tmp->token;
+		while (tmp_t)
+		{
+			if (tmp_t->type == MET && tmp_t->next->type
+				&& tmp_t->next->type == MET)
+				ft_error_syntax(tmp_t->next->content, 0);
+			tmp_t = tmp_t->next;
+		}
+		tmp = tmp->next;
+	}
+}

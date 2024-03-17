@@ -6,7 +6,7 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:57:15 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/15 16:39:37 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/17 20:35:33 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,6 @@ void	parse(char *line, t_data *data)
 	}
 	create_tokens(curr, curr->subline);
 	init_types(data);
+	check_syntax(data);
 	//ft_print_lists(data);
 }

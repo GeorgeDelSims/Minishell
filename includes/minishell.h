@@ -6,7 +6,7 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/15 18:20:21 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/17 20:33:14 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void		ft_add_front(t_token **token, t_token *new);
 int			token_size(t_token *token);
 
 /*----check.c----*/
-void		check_syntax(char *line);
+void		check_syntax(t_data *data);
 int			check_cmd(const char *is_cmd);
 
 /*----utils.c----*/
