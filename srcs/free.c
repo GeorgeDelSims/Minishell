@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 11:02:05 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/13 13:45:46 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/18 17:10:25 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	free_lists(t_data *data)
 		{
 			ft_free(curr_token->content);
 			next_token = curr_token->next;
-			free(curr_token);
+			ft_free(curr_token);
 			curr_token = NULL;
 			curr_token = next_token;
 		}
@@ -62,7 +62,7 @@ void	free_lists(t_data *data)
 		// ft_free_array(curr_list->args);
 		curr_list->token = NULL;
 		next_list = curr_list->next;
-		free(curr_list);
+		ft_free(curr_list);
 		curr_list = next_list;
 	}
 	data->list = NULL;
