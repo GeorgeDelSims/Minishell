@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:41:01 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/18 11:38:14 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/18 22:11:25 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int ac, char *av[], const char *envp[])
 		line = readline("minishell> ");
 		if (line && *line) 
 			add_history(line);
-		if (ft_strncmp(line, "exit", ft_strlen("exit")) == 0 && ft_quit(line))
+		if (ft_strcmp(line, "exit") == 0 && ft_quit(line))
 			break ;
 		// replace dollar signs by env values
 		parse(line, data);

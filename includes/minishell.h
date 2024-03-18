@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/18 14:39:34 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/18 22:04:03 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ int			check_cmd(const char *is_cmd);
 /*----utils.c----*/
 void		ft_print_array(char **array);
 void		ft_print_lists(t_data *data);
+char		*ft_strdup_lower(const char *s);
+int			ft_strcmp(const char *s1, const char *s2);
 
 /*----exec.c----*/
 int			ft_execute(t_data *data, char *const *envp);
@@ -112,7 +114,8 @@ void		parse(char *line, t_data *data);
 void		create_tokens(t_liste *list, char *subline);
 
 /*----error.c----*/
-void		*ft_error(const char *msg);
+void		ft_error(const char *msg);
+int			ft_error_syntax(char *msg, char *arg, int i);
 
 /*----error.c----*/
 void		free_lists(t_data *data);

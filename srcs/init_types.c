@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_types.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 11:05:02 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/18 10:09:53 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/18 22:16:53 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,11 @@ int	what_is_this(t_token *token)
 
 int	is_builtin(char *content)
 {
-	int	s;
-
-	s = ft_strlen(content);
-	if (!(ft_strncmp(content, "echo", s)) || !(ft_strncmp(content, "env", s))
-		|| !(ft_strncmp(content, "pwd", s)) || !(ft_strncmp(content, "cd", s))
-		|| !(ft_strncmp(content, "unset", s))
-		|| !(ft_strncmp(content, "export", s))
-		|| !(ft_strncmp(content, "exit", s)))
+	if (!(ft_strncmp(content, "echo", 4)) || !(ft_strncmp(content, "env", 3))
+		|| !(ft_strncmp(content, "pwd", 3)) || !(ft_strncmp(content, "cd", 2))
+		|| !(ft_strncmp(content, "unset", 5))
+		|| !(ft_strncmp(content, "export", 6))
+		|| !(ft_strncmp(content, "exit", 4)))
 		return (BUILTIN);
 	else
 		return (CMD);
@@ -84,11 +81,19 @@ void	init_types(t_data *d)
 	t_token	*tmp_t;
 
 	tmp = d->list;
-	while (tmp)
+	if (!tmp)
+		tmp = NULL ;
+	else
 	{
-		tmp_t = tmp->token;
-		init_types_utils(tmp_t);
-		tmp = tmp->next;
+		while (tmp)
+		{
+			if (tmp_t)
+			{
+				tmp_t = tmp->token;
+				init_types_utils(tmp_t);
+			}
+			tmp = tmp->next;
+		}
 	}
 	ft_print_lists(d);
 }

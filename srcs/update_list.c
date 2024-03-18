@@ -3,58 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   update_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:59:36 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/18 14:45:00 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/18 21:40:28 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	update_standards(t_data *d)
+void	update_standards(t_data *data, t_token *token)
 {
 	t_token	*t;
+	t_data	*d;
 
-	t = d->list->token;
-	if (ft_strncmp(t->content, "<", 1) && t && t->next)
+	t = token;
+	d = data;
+	if (ft_strncmp(t->content, "<", 1) == 0)
 	{
 		d->list->in = open(t->next->content, O_RDONLY);
 		if (d->list->in == -1)
-			read_error("Erreur lors de l'ouverture du fichier");
+			ft_error_syntax("No such file or directory", t->next->content, 2);
 	}
-	else if (ft_strncmp(t->content, ">", 1) && t && t->next)
+	else if (ft_strncmp(t->content, ">", 1) == 0)
 	{
-		d->list->out = open(t->next->content, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		if (d->list->in == -1)
-			read_error("Erreur lors de l'ouverture du fichier");
+		d->list->out = open(t->next->content, O_WRONLY
+				| O_CREAT | O_TRUNC, 0644);
+		if (d->list->out == -1)
+			ft_error_syntax("No such file or directory", t->next->content, 2);
 	}
-	else if (ft_strncmp(t->content, ">>", 2) && t && t->next)
+	else if (ft_strncmp(t->content, ">>", 2) == 0)
 	{
-		d->list->in = open(t->next->content, O_WRONLY | O_CREAT | O_APPEND, 0644);
+		d->list->in = open(t->next->content, O_WRONLY
+				| O_CREAT | O_APPEND, 0644);
 		if (d->list->in == -1)
-			read_error("Erreur lors de l'ouverture du fichier");
+			ft_error_syntax("No such file or directory", t->next->content, 2);
 	}
 }	
 
 void	update_list(t_data *d)
 {
 	t_liste	*tmp;
-	t_token	*tmp_t;
+	t_token	*t;
 	int		i;
 
 	tmp = d->list;
 	while (tmp)
 	{
-		tmp_t = d->list->token;
+		t = d->list->token;
 		i = 0;
-		while (tmp_t)
+		while (t)
 		{
-			if (i == 0 && tmp_t->type != MET && tmp_t)
-				d->list->cmd = ft_strdup(tmp_t->content);
-			else if (tmp_t->type == MET && tmp_t && tmp_t->next)
-				update_standards(d);
+			if (i == 0 && t->type != MET && t)
+				d->list->cmd = ft_strdup(t->content);
+			else if (t->type == MET && t && t->next)
+				update_standards(d, t);
+			t = t->next;
+			i++;
 		}
+		tmp = tmp->next;
 	}
-	printf("CMD = %s\nIN = %d\nOUT = %d\n", d->list->cmd, d->list->in, d->list->out);
+	here_doc(d);
 }
