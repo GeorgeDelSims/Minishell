@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:43:00 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/18 12:20:00 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/18 13:52:12 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,14 @@ static char	*get_env_str(char *line, int *i)
 			tmp = malloc(sizeof(char) * next_word_size);
 			if (!tmp)
 				return (NULL);
-			ft_strlcpy(tmp, *(line + *i), next_word_size);
-			array[row] = ft_strdup(get_env(tmp));
+			ft_strlcpy(tmp, line + *i, next_word_size);
+			newstr = ft_strdup(getenv(tmp));
 			free(tmp);
 			tmp = NULL;
 		}
 		(*i)++;
 	}
+	return (newstr);
 }
 
 static char	**fill_env_array(char *line)
@@ -83,7 +84,6 @@ char	*include_env_vars(t_data *data, char *line)
 	int		i;
 	int		j;
 	int		row;
-	
 	// checks for how many $ signs 
 	env_count = count_env(line);
 	// creates array for strings that will replace env variables
@@ -95,6 +95,7 @@ char	*include_env_vars(t_data *data, char *line)
 	// iterates through line[i] and replaces env variables with strings from array into newline 
 	i = 0;
 	j = 0;
+	row = 0;
 	while (line[i])
 	{
 		if (line[i] == '$')
@@ -145,5 +146,5 @@ char	*get_env_str(t_data *data, char *line, const char *envp)
 }
 	
 	
-env_str = ft_strdup(get_env(env_call));
+env_str = ft_strdup(getenv(env_call));
 */
