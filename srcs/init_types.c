@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_types.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 11:05:02 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/17 20:34:52 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/18 10:09:53 by mlepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ int	what_is_this(t_token *token)
 	{
 		if (tmp->content[0] == 45 && tmp->prev && tmp->prev->type != OPTION)
 			tmp->type = OPTION;
+		else if (ft_strncmp(tmp->content, "<<", 2) == 0)
+		{
+			tmp->type = HEREDOC;
+			res++;
+		}
 		else if (tmp->content[0] == 60 || tmp->content[0] == 62)
 		{
 			tmp->type = MET;
@@ -65,11 +70,13 @@ void	init_types_utils(t_token *token)
 			tmp->type = is_builtin(tmp->content);
 		else if (i > 0 && tmp->prev->type == MET && tmp->type != MET)
 			tmp->type = FILENAME;
+		if (i > 0 && tmp->prev->type == MET && tmp && tmp->next
+			&& tmp->next->type == TXT)
+			tmp->next->type = is_builtin(tmp->next->content);
 		tmp = tmp->next;
 		i++;
 	}
 }
-
 
 void	init_types(t_data *d)
 {
