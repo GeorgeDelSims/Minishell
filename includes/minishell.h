@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/17 20:33:14 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/18 11:24:53 by mlepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define ARG		5
 # define MET		6
 # define FILENAME	7
+# define HEREDOC    8
 
 // cat > hello 
 typedef struct s_token
@@ -68,7 +69,8 @@ typedef struct s_data
 {
 	char			**envp;
 	char			**bin_paths;
-	t_liste			*list; // listes chainees de tokens 
+	t_liste			*list; // listes chainees de tokens
+	t_list			*hdoc;
 	int				fd[2];
 }					t_data;
 
@@ -99,6 +101,7 @@ void		ft_print_lists(t_data *data);
 /*----exec.c----*/
 int			ft_execute(t_data *data, char *const *envp);
 int			ft_access(t_data *data);
+void	    here_doc(t_data *d);
 
 /*----parsing.c----*/
 void		parse(char *line, t_data *data);
