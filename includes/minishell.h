@@ -6,7 +6,7 @@
 /*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/18 11:24:53 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/18 14:39:34 by mlepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,11 @@ typedef struct s_liste
 {
 	t_token			*token;
 	char			*subline;
+	char			*cmd;
 	int				in; // " STDIN = 0"
 	int				out; // "STOUT = 1"
 	const char		*cmd_path; // "usr/bin/cat"
-	char			**args; // pas d'args
+	char			**opt; // pas d'args
 	int				*delimiter_array;
 	struct s_liste	*next;
 }					t_liste;
@@ -81,6 +82,7 @@ void		ft_free_array(char **array);
 /*----init.c----*/
 t_data		*init_minishell(int ac, char *av[], const char *envp[]);
 void		init_types(t_data *d);
+void		update_list(t_data *d);
 
 /*----listutils.c----*/
 t_liste		*ft_list_new(char *subline);
@@ -116,5 +118,6 @@ void		*ft_error(const char *msg);
 void		free_lists(t_data *data);
 void		ft_free(void *ptr);
 void		ft_free_array(char **array);
+void		read_error(const char *msg);
 
 #endif

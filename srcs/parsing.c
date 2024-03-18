@@ -6,7 +6,7 @@
 /*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:57:15 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/18 10:10:37 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/18 14:39:43 by mlepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ void	parse(char *line, t_data *data)
 	create_tokens(curr, curr->subline);
 	init_types(data);
 	check_syntax(data);
+	update_list(data);
 	//ft_print_lists(data);
 }
