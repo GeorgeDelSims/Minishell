@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/17 20:33:14 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/18 12:18:08 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ typedef struct s_data
 {
 	char			**envp;
 	char			**bin_paths;
-	t_liste			*list; // listes chainees de tokens 
+	char            **env_array;
+    t_liste			*list; // listes chainees de tokens 
 	int				fd[2];
 }					t_data;
 
@@ -92,9 +93,13 @@ int			token_size(t_token *token);
 void		check_syntax(t_data *data);
 int			check_cmd(const char *is_cmd);
 
-/*----utils.c----*/
+/*----print_utils.c----*/
 void		ft_print_array(char **array);
 void		ft_print_lists(t_data *data);
+
+/*----utils.c----*/
+int		get_next_word_size(char *line, int i);
+int		count_chars_in_array(char	**array);
 
 /*----exec.c----*/
 int			ft_execute(t_data *data, char *const *envp);
@@ -105,6 +110,11 @@ void		parse(char *line, t_data *data);
 
 /*----parsing_tokens.c----*/
 void		create_tokens(t_liste *list, char *subline);
+void	    append_token(t_liste *list, char *subline, int start_of_token, int end_of_token);
+
+
+/*----env_parsing.c----*/
+char	*include_env_vars(t_data *data, char *line);
 
 /*----error.c----*/
 void		*ft_error(const char *msg);

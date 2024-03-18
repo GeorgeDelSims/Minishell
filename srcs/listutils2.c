@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   listutils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 11:19:11 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/14 11:20:19 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/18 10:42:13 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,3 +26,4 @@ int	token_size(t_token *token)
 	}
 	return (counter);
 }
+

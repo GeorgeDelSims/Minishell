@@ -1,47 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   parsing_tokens2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/18 11:53:27 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/18 12:14:14 by gsims            ###   ########.fr       */
+/*   Created: 2024/03/18 10:07:29 by gsims             #+#    #+#             */
+/*   Updated: 2024/03/18 10:42:41 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int		get_next_word_size(char *line, int i)
+// Appends a token onto the linked list of tokens 
+void	append_token(t_liste *list, char *subline, int start_of_token, int end_of_token)
 {
-	int		count;
-	
-	count = 0;
-	while (line[i] && line[i] != ' ')
-	{
-		count++;
-		i++;
-	}
-	return (count);
-}
+	char 	*token;
+	int		token_size;
 
-int		count_chars_in_array(char	**array)
-{
-	int		i;
-	int		j;
-	int		count;
-	
-	count = 0;
-	i = 0;
-	while (array[i])
-	{
-		j = 0;
-		while (array[i][j])
-		{
-			count++;
-			j++;
-		}
-		i++;
-	}
-	return (count);	
+	token_size = end_of_token - start_of_token;
+	token = malloc(sizeof(char) * (token_size + 1));
+	if (!token)
+		return ;
+	ft_strlcpy(token, subline + start_of_token, token_size + 1);
+	printf("token = %s\n", token);
+	ft_add_back(&list->token, ft_token_new(token));
 }

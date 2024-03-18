@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 08:26:05 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/17 20:36:50 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/18 09:05:48 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	check_syntax(t_data *d)
 		while (tmp_t)
 		{
 			if (tmp_t->type == MET && tmp_t->next->type
-				&& tmp_t->next->type == MET)
+				&& tmp_t->next->type == MET && tmp->next)
 				ft_error_syntax(tmp_t->next->content, 0);
 			tmp_t = tmp_t->next;
 		}
