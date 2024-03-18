@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   listutils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:57:29 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/15 13:16:30 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/18 14:09:33 by mlepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_liste	*ft_list_new(char *subline)
 		free(new);
 		return (NULL);
 	}
+	new->cmd = NULL;
 	new->token = NULL;
 	new->next = NULL;
 	return (new);
