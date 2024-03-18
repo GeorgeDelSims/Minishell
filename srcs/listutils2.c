@@ -6,7 +6,7 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 11:19:11 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/18 16:37:52 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/18 22:03:47 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,17 @@ char	*ft_strdup_lower(const char *s)
 		return (NULL);
 	ft_strlcpy(dest, s, i + 1);
 	return (dest);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	while ((*s1 != '\0' && *s2 != '\0') && (*s1 == *s2))
+	{
+		s1++;
+		s2++;
+	}
+	if (*s1 == *s2)
+		return (0);
+	else
+		return (*s1 - *s2);
 }

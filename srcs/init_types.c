@@ -6,7 +6,7 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 11:05:02 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/18 16:12:11 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/18 22:16:53 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,19 @@ void	init_types(t_data *d)
 	t_token	*tmp_t;
 
 	tmp = d->list;
-	while (tmp)
+	if (!tmp)
+		tmp = NULL ;
+	else
 	{
-		tmp_t = tmp->token;
-		init_types_utils(tmp_t);
-		tmp = tmp->next;
+		while (tmp)
+		{
+			if (tmp_t)
+			{
+				tmp_t = tmp->token;
+				init_types_utils(tmp_t);
+			}
+			tmp = tmp->next;
+		}
 	}
 	ft_print_lists(d);
 }

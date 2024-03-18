@@ -6,7 +6,7 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/18 16:44:49 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/18 22:04:03 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int			check_cmd(const char *is_cmd);
 void		ft_print_array(char **array);
 void		ft_print_lists(t_data *data);
 char		*ft_strdup_lower(const char *s);
+int			ft_strcmp(const char *s1, const char *s2);
 
 /*----exec.c----*/
 int			ft_execute(t_data *data, char *const *envp);

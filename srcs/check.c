@@ -6,7 +6,7 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 08:26:05 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/18 16:23:04 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/18 21:27:09 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,4 @@ void	check_syntax(t_data *d)
 		}
 		tmp = tmp->next;
 	}
-	here_doc(d);
 }

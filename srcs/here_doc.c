@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 09:57:24 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/18 11:35:20 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/18 22:04:35 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	here_doc_init(t_token *tmp, t_data *d)
 		line = readline("> ");
 		if (!line)
 			break ;
-		if (tmp->next && ft_strncmp(line, tmp->next->content, ft_strlen(line)) == 0)
+		printf("content :         %s\nline :             %s\n", tmp->next->content, line);
+		if (tmp->next && ft_strcmp(line, tmp->next->content) == 0)
 		{
 			free(line);
 			break ;
@@ -35,11 +36,22 @@ void	here_doc_init(t_token *tmp, t_data *d)
 void	here_doc(t_data *d)
 {
 	t_token	*tmp;
+	int		hd_count;
 
+	hd_count = 0;
 	tmp = d->list->token;
 	while (tmp)
 	{
 		if (tmp->type == HEREDOC)
+			hd_count++;
+		tmp = tmp->next;
+	}
+	tmp = d->list->token;
+	while (tmp)
+	{
+		if (tmp->type == HEREDOC && hd_count > 1)
+			hd_count--;
+		else if (tmp->type == HEREDOC && hd_count == 1)
 			here_doc_init(tmp, d);
 		tmp = tmp->next;
 	}
