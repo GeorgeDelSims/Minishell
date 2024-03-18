@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:32:11 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/18 10:15:20 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/18 15:12:36 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	create_tokens(t_liste *list, char *subline)
 	i = 0;
 	start_of_token = 0;
 	quote = 0;
-	while (subline[i] || quote == 0)
+	while (subline[i])
 	{
 		if (subline[i] == '\'' && quote == 0)
 			open_quotes(&i, &quote, &start_of_token, SINGLE_QUOTE);
