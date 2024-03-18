@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:57:15 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/17 20:35:33 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/18 14:57:58 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	parse(char *line, t_data *data)
 		curr = curr->next;
 	}
 	create_tokens(curr, curr->subline);
-	init_types(data);
-	check_syntax(data);
+	// init_types(data);
+	// check_syntax(data);
 	//ft_print_lists(data);
 }

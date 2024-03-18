@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:43:00 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/18 13:52:12 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/18 14:47:08 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,9 @@ char	*include_env_vars(t_data *data, char *line)
 	env_count = count_env(line);
 	// creates array for strings that will replace env variables
 	data->env_array = fill_env_array(line);
+	ft_print_array(data->env_array);
 	// mallocs a newline with the size of line + contents of array
-	newline = malloc(sizeof(char) * (ft_strlen(line) + count_chars_in_array(data->env_array) + 1));
+	newline = malloc(sizeof(char) * (ft_strlen(line) + count_chars_in_array(data->env_array) + 3));
 	if (!newline)
 		return (NULL);
 	// iterates through line[i] and replaces env variables with strings from array into newline 
@@ -102,49 +103,28 @@ char	*include_env_vars(t_data *data, char *line)
 		{
 			while(line[i] && line[i] != ' ')
 				i++;
+			newline[j] = '\"';
+			j++;
 			newline[j] = '\0';
 			temp = newline;
 			newline = ft_strjoin(temp, data->env_array[row]);
+			free(temp);
 			temp = NULL;
 			j += ft_strlen(data->env_array[row]);
+			newline[j] = '\"';
+			j++;
 			row++;
 		}
 		else
+		{
 			newline[j] = line[i];
-		i++;
-		j++;
+			i++;
+			j++;
+		}
 	}
 	newline[j] = '\0';
+	printf("newline at end of function : %s\n", newline);
 	return (newline);
 	// frees array
 }
 
-
-/*
-char	*get_env_str(t_data *data, char *line, const char *envp)
-{
-	char 	*env_str;
-	int		env_str_len;
-	int		i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] == '$')
-		{
-			i++;
-			env_str_len = 0;
-			while (line[i] && line[i] != ' ')
-				env_str_len++;
-			env_str = malloc(sizeof(char) * env_str_len + 1);
-			i = i - env_str_len;
-			while (line[i] && )
-			
-		}
-		i++;
-	}
-}
-	
-	
-env_str = ft_strdup(getenv(env_call));
-*/
