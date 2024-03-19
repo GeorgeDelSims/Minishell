@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:41:01 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/18 22:11:25 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/19 09:21:32 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(int ac, char *av[], const char *envp[])
             add_history(line);
             tmp = line;
             line = include_env_vars(data, tmp);
+            printf("HELLO \n");
             ft_free(tmp);
             parse(line, data);
             if (ft_strncmp(line, "exit", ft_strlen("exit")) == 0 && ft_quit(line))
