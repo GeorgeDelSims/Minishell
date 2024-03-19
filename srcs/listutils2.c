@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   listutils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 11:19:11 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/18 22:03:47 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/18 10:42:13 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	token_size(t_token *token)
 	return (counter);
 }
 
-size_t	ft_strlcpy(char	*dst, const char *src, size_t dstsize)
+size_t	ft_strlcpy_mode(char	*dst, const char *src, size_t dstsize)
 {
 	size_t	i;
 	size_t	srcsize;

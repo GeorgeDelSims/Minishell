@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:57:15 by georgesims        #+#    #+#             */
 /*   Updated: 2024/03/18 22:13:07 by mathieu          ###   ########.fr       */
@@ -67,7 +67,7 @@ static void	create_sublines(char *line, t_data *data)
 		while (line[i] == '|' || line[i] == ' ')
 			i++;
 		ft_add_back_list(&data->list, ft_list_new(subline_temp));
-		free(subline_temp);
+		ft_free(subline_temp);
 		number_of_sublines--;
 	}
 }
@@ -87,5 +87,5 @@ void	parse(char *line, t_data *data)
 	init_types(data);
 	check_syntax(data);
 	update_list(data);
-	//ft_print_lists(data);
+	ft_print_lists(data);
 }
