@@ -6,19 +6,19 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:41:01 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/18 18:08:50 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/19 09:21:32 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int    ft_quit(char *line)
+int	ft_quit(char *line)
 {
     ft_free(line);
     return (1);
 }
 
-int main(int ac, char *av[], const char *envp[])
+int	main(int ac, char *av[], const char *envp[])
 {
     char        *line;
     char        *tmp;
@@ -35,6 +35,7 @@ int main(int ac, char *av[], const char *envp[])
             add_history(line);
             tmp = line;
             line = include_env_vars(data, tmp);
+            printf("HELLO \n");
             ft_free(tmp);
             parse(line, data);
             if (ft_strncmp(line, "exit", ft_strlen("exit")) == 0 && ft_quit(line))
@@ -42,6 +43,7 @@ int main(int ac, char *av[], const char *envp[])
             ft_free(line);
             free_lists(data);
         }
+        
         // data->cmds->cmd = line; // Juste pour tester la fonction Exec
         // ft_execute(data, (char* const*)envp);
     }

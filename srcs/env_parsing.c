@@ -29,7 +29,6 @@ static int      count_env(char *line)
     return (count);
 }
 
-
 static char *get_env_str(char *line, int *i)
 {
     char    *newstr;

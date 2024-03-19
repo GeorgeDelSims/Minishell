@@ -6,45 +6,38 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 11:05:02 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/17 20:34:52 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/19 07:52:25 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	what_is_this(t_token *token)
+void	what_is_this(t_token *token)
 {
-	int		res;
 	t_token	*tmp;
 
-	res = 0;
 	tmp = token;
 	while (tmp)
 	{
 		if (tmp->content[0] == 45 && tmp->prev && tmp->prev->type != OPTION)
 			tmp->type = OPTION;
+		else if (ft_strncmp(tmp->content, "<<", 2) == 0)
+			tmp->type = HEREDOC;
 		else if (tmp->content[0] == 60 || tmp->content[0] == 62)
-		{
 			tmp->type = MET;
-			res++;
-		}
 		else
 			tmp->type = TXT;
 		tmp = tmp->next;
 	}
-	return (res);
 }
 
 int	is_builtin(char *content)
 {
-	int	s;
-
-	s = ft_strlen(content);
-	if (!(ft_strncmp(content, "echo", s)) || !(ft_strncmp(content, "env", s))
-		|| !(ft_strncmp(content, "pwd", s)) || !(ft_strncmp(content, "cd", s))
-		|| !(ft_strncmp(content, "unset", s))
-		|| !(ft_strncmp(content, "export", s))
-		|| !(ft_strncmp(content, "exit", s)))
+	if (!(ft_strncmp(content, "echo", 4)) || !(ft_strncmp(content, "env", 3))
+		|| !(ft_strncmp(content, "pwd", 3)) || !(ft_strncmp(content, "cd", 2))
+		|| !(ft_strncmp(content, "unset", 5))
+		|| !(ft_strncmp(content, "export", 6))
+		|| !(ft_strncmp(content, "exit", 4)))
 		return (BUILTIN);
 	else
 		return (CMD);
@@ -65,11 +58,13 @@ void	init_types_utils(t_token *token)
 			tmp->type = is_builtin(tmp->content);
 		else if (i > 0 && tmp->prev->type == MET && tmp->type != MET)
 			tmp->type = FILENAME;
+		if (i > 0 && tmp->prev->type == MET && tmp && tmp->next
+			&& tmp->next->type == TXT)
+			tmp->next->type = is_builtin(tmp->next->content);
 		tmp = tmp->next;
 		i++;
 	}
 }
-
 
 void	init_types(t_data *d)
 {
@@ -77,11 +72,19 @@ void	init_types(t_data *d)
 	t_token	*tmp_t;
 
 	tmp = d->list;
-	while (tmp)
+	if (!tmp)
+		tmp = NULL ;
+	else
 	{
-		tmp_t = tmp->token;
-		init_types_utils(tmp_t);
-		tmp = tmp->next;
+		while (tmp)
+		{
+			if (tmp_t)
+			{
+				tmp_t = tmp->token;
+				init_types_utils(tmp_t);
+			}
+			tmp = tmp->next;
+		}
 	}
 	ft_print_lists(d);
 }
