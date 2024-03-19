@@ -6,19 +6,19 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:41:01 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/18 18:08:50 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/18 22:11:25 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int    ft_quit(char *line)
+int	ft_quit(char *line)
 {
     ft_free(line);
     return (1);
 }
 
-int main(int ac, char *av[], const char *envp[])
+int	main(int ac, char *av[], const char *envp[])
 {
     char        *line;
     char        *tmp;

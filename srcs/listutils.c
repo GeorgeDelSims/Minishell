@@ -28,6 +28,7 @@ t_liste	*ft_list_new(char *subline)
 		ft_free(new);
 		return (NULL);
 	}
+	new->cmd = NULL;
 	new->token = NULL;
 	new->next = NULL;
 	return (new);

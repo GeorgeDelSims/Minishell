@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/18 12:18:08 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/18 22:04:03 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define ARG		5
 # define MET		6
 # define FILENAME	7
+# define HEREDOC    8
 
 // cat > hello 
 typedef struct s_token
@@ -55,10 +56,11 @@ typedef struct s_liste
 {
 	t_token			*token;
 	char			*subline;
+	char			*cmd;
 	int				in; // " STDIN = 0"
 	int				out; // "STOUT = 1"
 	const char		*cmd_path; // "usr/bin/cat"
-	char			**args; // pas d'args
+	char			**opt; // pas d'args
 	int				*delimiter_array;
 	struct s_liste	*next;
 }					t_liste;
@@ -68,8 +70,9 @@ typedef struct s_data
 {
 	char			**envp;
 	char			**bin_paths;
-	char            **env_array;
-    t_liste			*list; // listes chainees de tokens 
+	t_liste		*list; // listes chainees de tokens
+	t_list		*hdoc;
+	char      **env_array;
 	int				fd[2];
 }					t_data;
 
@@ -80,6 +83,7 @@ void		ft_free_array(char **array);
 /*----init.c----*/
 t_data		*init_minishell(int ac, char *av[], const char *envp[]);
 void		init_types(t_data *d);
+void		update_list(t_data *d);
 
 /*----listutils.c----*/
 t_liste		*ft_list_new(char *subline);
@@ -96,6 +100,8 @@ int			check_cmd(const char *is_cmd);
 /*----print_utils.c----*/
 void		ft_print_array(char **array);
 void		ft_print_lists(t_data *data);
+char		*ft_strdup_lower(const char *s);
+int			ft_strcmp(const char *s1, const char *s2);
 
 /*----utils.c----*/
 int		get_next_word_size(char *line, int i);
@@ -104,6 +110,7 @@ int		count_chars_in_array(char	**array);
 /*----exec.c----*/
 int			ft_execute(t_data *data, char *const *envp);
 int			ft_access(t_data *data);
+void	    here_doc(t_data *d);
 
 /*----parsing.c----*/
 void		parse(char *line, t_data *data);
@@ -117,11 +124,13 @@ void	    append_token(t_liste *list, char *subline, int start_of_token, int end_
 char	*include_env_vars(t_data *data, char *line);
 
 /*----error.c----*/
-void		*ft_error(const char *msg);
+void		ft_error(const char *msg);
+int			ft_error_syntax(char *msg, char *arg, int i);
 
 /*----error.c----*/
 void		free_lists(t_data *data);
 void		ft_free(void *ptr);
 void		ft_free_array(char **array);
+void		read_error(const char *msg);
 
 #endif
