@@ -3,11 +3,9 @@
 ETAPES: 
 
 - Signal handling : loop infinie dans le main, interrompue par différents signaux (SIGINT etc.) - 1 variable globale pour ça 
-- Historique: sauvegarder chaque entree en tant que string dans la liste chainee statement (lstaddfront)
-- Structurer les données (t_data struct, t_cmd struct etc.)
-- Parsing : ranger les inputs dans des listes chaînées afin de pouvoir les trier et interpreter
-- Execution de commandes basiques sans arguments ni redirection ou pipe ( "cd" "exit" "export"). 
-- Comprendre et implémenter la fonction "history" 
+- Fonction Access pour les commandes 
+- Execution de commandes basiques sans arguments ni redirection ou pipe ( "cd" "exit" "export").
+- faire un directory "built-in" avec des makefiles pour chaque commande pour avoir un executable pour chaque commande
 - Comprendre et implémenter redirections et pipes
 
 FONCTIONNEMENT: 

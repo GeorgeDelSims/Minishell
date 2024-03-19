@@ -30,7 +30,7 @@ static int      count_env(char *line)
 }
 
 
-static char *get_env_str(char *line, int *i)
+static char *get_env_str(t_data *data, char *line, int *i)
 {
     char    *newstr;
     char    *tmp;
@@ -43,14 +43,15 @@ static char *get_env_str(char *line, int *i)
 	if (!tmp)
 		return (NULL);
 	ft_strlcpy(tmp, line + *i, next_word_size);
-	newstr = ft_strdup(getenv(tmp));
+    if (get_env(data, tmp))
+        newstr = ft_strdup(get_env(data, tmp));
 	ft_free(tmp);
 	tmp = NULL;
 	*i += next_word_size - 1;
     return (newstr);
 }
 
-static char **fill_env_array(char *line)
+static char **fill_env_parse_array(t_data *data, char *line)
 {
     char    **array;
     int     row_count;
@@ -67,7 +68,7 @@ static char **fill_env_array(char *line)
     {
 		if (line[i] == '$' && line[i])
 		{
-			array[row] = get_env_str(line, &i);
+			array[row] = get_env_str(data, line, &i);
 			row++;
 		}
 		else
@@ -85,9 +86,9 @@ static char *get_newline(t_data *data, char *line)
     char    *newline;
 
 	env_count = count_env(line);
-	data->env_array = fill_env_array(line);
-	printf("count chars in array : %d\n", count_chars_in_array(data->env_array));
-	newline = malloc(sizeof(char) * (ft_strlen(line) + count_chars_in_array(data->env_array) + 1 + 2 * env_count));
+	data->env_parse_array = fill_env_parse_array(data, line);
+	// printf("count chars in array : %d\n", count_chars_in_array(data->env_parse_array));
+	newline = malloc(sizeof(char) * (ft_strlen(line) + count_chars_in_array(data->env_parse_array) + 1 + 2 * env_count));
 	if (!newline)
 		return (NULL);
 	return (newline);
@@ -99,6 +100,12 @@ static int	add_quote(char *newline, int j)
 	j++;
 	return (j);
 }
+
+// is_env_var function to check if the word following the $ sign is actually an env variable 
+// static int  is_env_var(char *line, int i)
+// {
+    // 
+// }
 
 char    *include_env_vars(t_data *data, char *line)
 {
@@ -121,10 +128,10 @@ char    *include_env_vars(t_data *data, char *line)
 			j = add_quote(newline, j);
             newline[j] = '\0';
             temp = newline;
-            newline = ft_strjoin(temp, data->env_array[row]);
+            newline = ft_strjoin(temp, data->env_parse_array[row]);
             ft_free(temp);
             temp = NULL;
-            j += ft_strlen(data->env_array[row]);
+            j += ft_strlen(data->env_parse_array[row]);
             j = add_quote(newline, j);
             row++;
         }
@@ -132,6 +139,6 @@ char    *include_env_vars(t_data *data, char *line)
             newline[j++] = line[i++];
     }
     newline[j] = '\0';
-	ft_free_array(data->env_array);
+	ft_free_array(data->env_parse_array);
     return (newline);
 }

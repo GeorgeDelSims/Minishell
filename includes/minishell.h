@@ -6,7 +6,7 @@
 /*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/19 13:18:30 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/19 13:05:09 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,23 @@ typedef struct s_liste
 	struct s_liste	*next;
 }					t_liste;
 
+typedef struct 		s_env
+{
+	char			*content;
+	struct s_env	*next;
+	struct s_env	*prev;
+}					t_env;
+
+
 // Main data structure 
 typedef struct s_data
 {
 	char			**envp;
 	char			**bin_paths;
-	t_liste		*list; // listes chainees de tokens
-	t_list		*hdoc;
-	char      **env_array;
+	t_liste			*list; // listes chainees de tokens
+	t_list			*hdoc;
+	char			**envp_array; // array  qui comprend toutes les var d'environnement pour exec
+	char      		**env_parse_array; // array qui ne comprend que les variables d'environnement relatives a la commande appelee
 	int				fd[2];
 }					t_data;
 
@@ -103,8 +112,8 @@ char		*ft_strdup_lower(const char *s);
 int			ft_strcmp(const char *s1, const char *s2);
 
 /*----utils.c----*/
-int		get_next_word_size(char *line, int i);
-int		count_chars_in_array(char	**array);
+int			get_next_word_size(char *line, int i);
+int			count_chars_in_array(char	**array);
 
 /*----exec.c----*/
 int			ft_execute(t_data *data, char *const *envp);
@@ -118,6 +127,8 @@ void		parse(char *line, t_data *data);
 void		create_tokens(t_liste *list, char *subline);
 void	    append_token(t_liste *list, char *subline, int start_of_token, int end_of_token);
 
+/*----env.c----*/
+char 		*get_env(t_data *data, char *var);
 
 /*----env_parsing.c----*/
 char	*include_env_vars(t_data *data, char *line);

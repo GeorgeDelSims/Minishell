@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:10:58 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/18 16:45:31 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/19 11:57:54 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,21 @@
 
 // Fonction pour initier les paths binaires 
 // (necessaire pour l'execution des commandes)
-static void	init_binpaths(t_data *data)
+// static void	init_binpaths(t_data *data)
+// {
+	// data->bin_paths = ft_split((const char *)getenv("PATH"), ':');
+	// if (!data->bin_paths)
+		// ft_error("PATH env variables not found.");
+// }
+
+
+// init environment function
+void	init_env(t_data *data, const char *envp[])
 {
-	data->bin_paths = ft_split((const char *)getenv("PATH"), ':');
-	if (!data->bin_paths)
-		ft_error("PATH env variables not found.");
+	data->envp_array = (char **)envp;
+	// ft_print_array(data->envp_array);
 }
+
 
 // FONCTION MAIN POUR INITIER STRUCTURES ET DONNEES
 t_data	*init_minishell(int ac, char *av[], const char *envp[])
@@ -31,7 +40,7 @@ t_data	*init_minishell(int ac, char *av[], const char *envp[])
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
 		ft_error("malloc error on data structure");
-	init_binpaths(data);
-	// Il faudra initialiser les listes chainees de tokens ici
+	init_env(data, envp);
+	// init_binpaths(data);
 	return (data);
 }
