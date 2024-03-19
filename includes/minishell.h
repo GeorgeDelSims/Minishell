@@ -6,7 +6,7 @@
 /*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/19 12:11:56 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/19 13:18:30 by mlepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_liste
 	int				in; // " STDIN = 0"
 	int				out; // "STOUT = 1"
 	const char		*cmd_path; // "usr/bin/cat"
-	char			**opt; // pas d'args
+	char			**args; // options, file, args... (premier elmt commande)
 	int				*delimiter_array;
 	struct s_liste	*next;
 }					t_liste;

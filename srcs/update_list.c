@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:59:36 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/18 21:40:28 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/19 13:32:44 by mlepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	update_list(t_data *d)
 		i = 0;
 		while (t)
 		{
-			if (i == 0 && t->type != MET && t)
+			if (t->type == CMD || t->type == BUILTIN)
 				d->list->cmd = ft_strdup(t->content);
 			else if (t->type == MET && t && t->next)
 				update_standards(d, t);

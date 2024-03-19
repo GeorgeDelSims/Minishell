@@ -6,7 +6,7 @@
 /*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:33:44 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/19 12:19:59 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/19 13:36:40 by mlepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,21 @@ void	init_paths(t_data *d, const char *envp[])
 	
 	i = 0;
 	d->bin_paths = ft_split(find_path(envp), ':');
-	while (d->bin_paths[i])
+	if (d->list->cmd)
 	{
-		tmp = ft_strjoin(d->bin_paths[i], ft_strjoin("/", d->list->cmd));
-		if (access(tmp, X_OK) == 0)
+		while (d->bin_paths[i])
 		{
-			d->list->cmd_path = ft_strdup(tmp);
+			tmp = ft_strjoin(d->bin_paths[i], ft_strjoin("/", d->list->cmd));
+			if (access(tmp, X_OK) == 0)
+			{
+				d->list->cmd_path = ft_strdup(tmp);
+				free(tmp);
+				break ;
+			}
 			free(tmp);
-			break ;
+			i++;
 		}
-		free(tmp);
-		i++;
+		if (!d->list->cmd_path)
+			ft_error_syntax("command not found", d->list->token->content, 2);
 	}
 }
