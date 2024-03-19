@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/19 14:18:18 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/19 15:45:28 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void		parse(char *line, t_data *data);
 
 /*----parsing_tokens.c----*/
 void		create_tokens(t_liste *list, char *subline);
-void	    append_token(t_liste *list, char *subline, int start_of_token, int end_of_token);
+void	    append_token(t_liste *list, char *subline, int start_of_token, int end_of_token, int *quote);
 
 /*----env.c----*/
 char 		*get_env(t_data *data, char *var);

@@ -6,14 +6,14 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:07:29 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/18 17:41:50 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/19 16:03:43 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 // Appends a token onto the linked list of tokens 
-void	append_token(t_liste *list, char *subline, int start_of_token, int end_of_token)
+void	append_token(t_liste *list, char *subline, int start_of_token, int end_of_token, int *quote)
 {
 	char 	*token;
 	int		token_size;
@@ -23,6 +23,12 @@ void	append_token(t_liste *list, char *subline, int start_of_token, int end_of_t
 	if (!token)
 		return ;
 	ft_strlcpy(token, subline + start_of_token, token_size + 1);
-	// printf("token = %s\n", token);
+	if (quote != NULL)
+	{
+		if (*quote == SINGLE_QUOTE && ft_strchr(token, '\''))
+			remove_char(token, '\'');
+		else if (*quote == DOUBLE_QUOTE && ft_strchr(token, '\"'))
+			remove_char(token, '\"');
+	}
 	ft_add_back(&list->token, ft_token_new(token));
 }

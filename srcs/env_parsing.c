@@ -75,7 +75,7 @@ static char **fill_env_parse_array(t_data *data, char *line)
 			i++;
     }
     array[row] = NULL;
-	ft_print_array(array);
+	// ft_print_array(array);
     return (array); 
 }
 
