@@ -29,7 +29,7 @@ static int      count_env(char *line)
     return (count);
 }
 
-
+// Description needed
 static char *get_env_str(t_data *data, char *line, int *i)
 {
     char    *newstr;
@@ -45,12 +45,15 @@ static char *get_env_str(t_data *data, char *line, int *i)
 	ft_strlcpy(tmp, line + *i, next_word_size);
     if (get_env(data, tmp))
         newstr = ft_strdup(get_env(data, tmp));
+    else
+        newstr = NULL;
 	ft_free(tmp);
 	tmp = NULL;
 	*i += next_word_size - 1;
     return (newstr);
 }
 
+// Description needed
 static char **fill_env_parse_array(t_data *data, char *line)
 {
     char    **array;
