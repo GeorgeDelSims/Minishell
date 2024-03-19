@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:41:01 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/18 18:08:50 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/19 08:43:57 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int main(int ac, char *av[], const char *envp[])
             ft_free(line);
             free_lists(data);
         }
+        
         // data->cmds->cmd = line; // Juste pour tester la fonction Exec
         // ft_execute(data, (char* const*)envp);
     }
