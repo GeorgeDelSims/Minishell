@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
 /*   Updated: 2024/03/19 13:05:09 by gsims            ###   ########.fr       */
@@ -51,7 +51,6 @@ typedef struct s_token
 	struct s_token	*prev;
 }					t_token;
 
-
 typedef struct s_liste
 {
 	t_token			*token;
@@ -60,7 +59,7 @@ typedef struct s_liste
 	int				in; // " STDIN = 0"
 	int				out; // "STOUT = 1"
 	const char		*cmd_path; // "usr/bin/cat"
-	char			**opt; // pas d'args
+	char			**args; // options, file, args... (premier elmt commande)
 	int				*delimiter_array;
 	struct s_liste	*next;
 }					t_liste;
@@ -132,7 +131,8 @@ void	    append_token(t_liste *list, char *subline, int start_of_token, int end_
 char 		*get_env(t_data *data, char *var);
 
 /*----env_parsing.c----*/
-char		*include_env_vars(t_data *data, char *line);
+char	*include_env_vars(t_data *data, char *line);
+void	init_paths(t_data *d, const char *envp[]);
 
 /*----error.c----*/
 void		ft_error(const char *msg);

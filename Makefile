@@ -6,7 +6,7 @@
 #    By: gsims <gsims@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/06 11:36:48 by georgesims        #+#    #+#              #
-#    Updated: 2024/03/19 12:14:48 by gsims            ###   ########.fr        #
+#    Updated: 2024/03/19 11:46:17 by mlepesqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 CHECKER = check
 UTILS = listutils listutils2 error utils free print_utils
 PARSING = parsing parsing_tokens parsing_tokens2 env_parsing env
-MAIN = main init exec init_types here_doc update_list
+MAIN = main init exec init_types here_doc update_list access
 
 LIBFT = ./libft/libft.a
 READLINE_DIR = $(HOME)/.brew/opt/readline/include
