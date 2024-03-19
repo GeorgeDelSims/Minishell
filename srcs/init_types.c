@@ -6,38 +6,29 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 11:05:02 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/18 22:16:53 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/19 07:52:25 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	what_is_this(t_token *token)
+void	what_is_this(t_token *token)
 {
-	int		res;
 	t_token	*tmp;
 
-	res = 0;
 	tmp = token;
 	while (tmp)
 	{
 		if (tmp->content[0] == 45 && tmp->prev && tmp->prev->type != OPTION)
 			tmp->type = OPTION;
 		else if (ft_strncmp(tmp->content, "<<", 2) == 0)
-		{
 			tmp->type = HEREDOC;
-			res++;
-		}
 		else if (tmp->content[0] == 60 || tmp->content[0] == 62)
-		{
 			tmp->type = MET;
-			res++;
-		}
 		else
 			tmp->type = TXT;
 		tmp = tmp->next;
 	}
-	return (res);
 }
 
 int	is_builtin(char *content)
