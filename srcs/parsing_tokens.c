@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_tokens.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:32:11 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/14 14:14:29 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/19 07:09:19 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	append_token(t_liste *list, char *subline, int start_of_token, int end_of_t
 	if (!token)
 		return ;
 	ft_strlcpy(token, subline + start_of_token, token_size + 1);
-	printf("token = %s\n", token);
+	//printf("token = %s\n", token);
 	ft_add_back(&list->token, ft_token_new(token));
 }
 
