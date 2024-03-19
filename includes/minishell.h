@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/18 22:04:03 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/19 12:11:56 by mlepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct s_token
 	struct s_token	*next; // -> ">"
 	struct s_token	*prev;
 }					t_token;
-
 
 typedef struct s_liste
 {
@@ -122,6 +121,7 @@ void	    append_token(t_liste *list, char *subline, int start_of_token, int end_
 
 /*----env_parsing.c----*/
 char	*include_env_vars(t_data *data, char *line);
+void	init_paths(t_data *d, const char *envp[]);
 
 /*----error.c----*/
 void		ft_error(const char *msg);
