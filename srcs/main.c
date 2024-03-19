@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:41:01 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/19 12:17:18 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/19 12:57:30 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	main(int ac, char *av[], const char *envp[])
     if (ac < 1 || av || !envp)
         line = NULL;
     data = init_minishell(ac, av, envp);
-    printf("get_env (USER) : %s\n", get_env(data, "USER"));
     while (1)
     {
         line = readline("minishell> ");

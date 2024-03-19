@@ -30,7 +30,7 @@ static int      count_env(char *line)
 }
 
 
-static char *get_env_str(char *line, int *i)
+static char *get_env_str(t_data *data, char *line, int *i)
 {
     char    *newstr;
     char    *tmp;
@@ -43,14 +43,15 @@ static char *get_env_str(char *line, int *i)
 	if (!tmp)
 		return (NULL);
 	ft_strlcpy(tmp, line + *i, next_word_size);
-	newstr = ft_strdup(getenv(tmp));
+    if (get_env(data, tmp))
+        newstr = ft_strdup(get_env(data, tmp));
 	ft_free(tmp);
 	tmp = NULL;
 	*i += next_word_size - 1;
     return (newstr);
 }
 
-static char **fill_env_parse_array(char *line)
+static char **fill_env_parse_array(t_data *data, char *line)
 {
     char    **array;
     int     row_count;
@@ -67,7 +68,7 @@ static char **fill_env_parse_array(char *line)
     {
 		if (line[i] == '$' && line[i])
 		{
-			array[row] = get_env_str(line, &i);
+			array[row] = get_env_str(data, line, &i);
 			row++;
 		}
 		else
@@ -85,8 +86,8 @@ static char *get_newline(t_data *data, char *line)
     char    *newline;
 
 	env_count = count_env(line);
-	data->env_parse_array = fill_env_parse_array(line);
-	printf("count chars in array : %d\n", count_chars_in_array(data->env_parse_array));
+	data->env_parse_array = fill_env_parse_array(data, line);
+	// printf("count chars in array : %d\n", count_chars_in_array(data->env_parse_array));
 	newline = malloc(sizeof(char) * (ft_strlen(line) + count_chars_in_array(data->env_parse_array) + 1 + 2 * env_count));
 	if (!newline)
 		return (NULL);

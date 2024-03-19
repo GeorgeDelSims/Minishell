@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/19 12:15:45 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/19 13:05:09 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ typedef struct s_data
 	t_liste			*list; // listes chainees de tokens
 	t_list			*hdoc;
 	char			**envp_array; // array  qui comprend toutes les var d'environnement pour exec
-	char      		**env_parse_array; // array qui comprend que les variables d'environnement relatives a la ligne appelee
+	char      		**env_parse_array; // array qui ne comprend que les variables d'environnement relatives a la commande appelee
 	int				fd[2];
 }					t_data;
 
