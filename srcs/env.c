@@ -1,47 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/18 11:53:27 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/19 12:04:13 by gsims            ###   ########.fr       */
+/*   Created: 2024/03/19 12:04:27 by gsims             #+#    #+#             */
+/*   Updated: 2024/03/19 12:15:18 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int		get_next_word_size(char *line, int i)
-{
-	int		count;
-	
-	count = 0;
-	while (line[i] && line[i] != ' ')
-	{
-		count++;
-		i++;
-	}
-	return (count);
-}
-
-int		count_chars_in_array(char	**array)
+static int	is_in_env(t_data *data, char *var)
 {
 	int		i;
-	int		j;
-	int		count;
 	
-	count = 0;
 	i = 0;
-	while (array[i])
+	while (data->envp_array[i])
 	{
-		j = 0;
-		while (array[i][j])
-		{
-			count++;
-			j++;
-		}
+		if (ft_strncmp(var, data->envp_array[i], ft_strlen(var)) == 0)
+			return (i);
 		i++;
 	}
-	return (count);	
+	return (0);
+}
+
+char *get_env(t_data *data, char *var)
+{
+	int		i;
+	int		len;
+	int		var_len;
+	char	*res;
+	
+	i = is_in_env(data, var);
+	if (i == 0)
+		return (NULL);
+	len = ft_strlen(data->envp_array[i]);
+	var_len = ft_strlen(var);
+	res = ft_substr(data->envp_array[i], var_len + 1, len - (var_len + 1));
+	return (res);
 }
