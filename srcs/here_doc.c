@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 09:57:24 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/18 22:04:35 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/19 09:14:12 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	here_doc_init(t_token *tmp, t_data *d)
+static void	here_doc_init(t_token *tmp, t_data *d)
 {
 	t_list	*tmp_hdoc;
 	char	*line;
