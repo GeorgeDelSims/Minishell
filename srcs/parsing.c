@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:57:15 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/18 17:58:37 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/18 22:13:07 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,5 @@ void	parse(char *line, t_data *data)
 	init_types(data);
 	check_syntax(data);
 	ft_print_lists(data);
+	update_list(data);
 }
