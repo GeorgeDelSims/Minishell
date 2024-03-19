@@ -25,7 +25,7 @@ t_liste	*ft_list_new(char *subline)
 		new->subline = ft_strdup(subline);
 	else
 	{
-		free(new);
+		ft_free(new);
 		return (NULL);
 	}
 	new->cmd = NULL;
@@ -60,13 +60,7 @@ t_token	*ft_token_new(char *content)
 	new = (t_token *)malloc(sizeof(t_token));
 	if (!new)
 		return (NULL);
-	// new->content = malloc(ft_strlen(content) + 1);
-	// if (new->content)
 	new->content = ft_strdup(content);
-	// new->in = 0;
-	// new->out = 1;
-	// new->cmd_path = NULL;
-	// new->args = NULL;
 	new->type = 0;
 	new->prev = NULL;
 	new->next = NULL;
@@ -102,4 +96,3 @@ void	ft_add_front(t_token **token, t_token *new)
 		(*token)->prev = new;
 	*token = new;
 }
-
