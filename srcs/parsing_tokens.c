@@ -3,30 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_tokens.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:32:11 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/19 07:09:19 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/19 14:45:15 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 // Opens the quotes when it encounters a second quote of a certain type
-static void	open_quotes(int *i, int *quote, int *start_of_token, int quote_type)
+static void	open_quotes(char *subline, int *i, int *quote, int *start_of_token, int quote_type)
 {
 	*quote = quote_type;
 	*i = *i + 1;
-	*start_of_token = *i;
+	if (subline[*(i) - 1] && subline[*(i) - 1] == ' ')
+		*start_of_token = *i;
 }
 
 // Closes the quotes when it encounters a second quote of a certain type
 static void	close_quotes(t_liste *list, char *subline, int *i, int *quote, int *start_of_token)
 {
-	append_token(list, subline, *start_of_token, *i);
+	if (!subline[*(i) + 1])
+	{
+		append_token(list, subline, *start_of_token, *i);
+	}
+	else if (subline[*(i) + 1] && subline[*(i) + 1] == ' ')
+	{
+		append_token(list, subline, *start_of_token, *i);
+		(*i)++;
+		*start_of_token = *i;		
+	}
 	*quote = 0;
-	(*i)++;
-	*start_of_token = *i;
 }
 
 // Handles metacharacters(double and single)
@@ -75,9 +83,9 @@ void	create_tokens(t_liste *list, char *subline)
 	while (subline[i])
 	{
 		if (subline[i] == '\'' && quote == 0)
-			open_quotes(&i, &quote, &start_of_token, SINGLE_QUOTE);
+			open_quotes(subline, &i, &quote, &start_of_token, SINGLE_QUOTE);
 		else if (subline[i] == '\"' && quote == 0) 
-			open_quotes(&i, &quote, &start_of_token, DOUBLE_QUOTE);
+			open_quotes(subline, &i, &quote, &start_of_token, DOUBLE_QUOTE);
 		else if ((subline[i] == '\"' && quote == DOUBLE_QUOTE) || (subline[i] == '\'' && quote == SINGLE_QUOTE))
 			close_quotes(list, subline, &i, &quote, &start_of_token);
         else if ((subline[i] == '>' || subline[i] == '<') && quote == 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 11:53:27 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/19 11:59:53 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/19 14:12:02 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,21 @@ int		count_chars_in_array(char	**array)
 		i++;
 	}
 	return (count);	
+}
+
+void remove_char(char *str, char char_to_remove) 
+{
+    char *src; 
+    char *dst; 
+	
+	src = str;
+	dst = str;
+    while (*src) 
+	{
+        *dst = *src;
+        if (*dst != char_to_remove)
+			dst++;
+		src++;
+	}
+    *dst = '\0';
 }
