@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:07:29 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/20 12:16:57 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/20 14:02:16 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,19 @@ void	append_token(t_liste *list, char *subline, int start_of_token, int end_of_t
 	if (!token)
 		return ;
 	ft_strlcpy(token, subline + start_of_token, token_size + 1);
+	if (quote != NULL)
+	{
+		if (*quote == SINGLE_QUOTE && ft_strchr(token, '\''))
+			remove_char(token, '\'');
+		else if (*quote == DOUBLE_QUOTE && ft_strchr(token, '\"'))
+			remove_char(token, '\"');
+	}
+	ft_add_back(&list->token, ft_token_new(token));
+}
+
+
+void	append_token_simple(t_liste *list, char *token, int *quote)
+{
 	if (quote != NULL)
 	{
 		if (*quote == SINGLE_QUOTE && ft_strchr(token, '\''))

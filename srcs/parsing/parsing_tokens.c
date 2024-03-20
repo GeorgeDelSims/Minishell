@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:32:11 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/20 12:28:45 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/20 14:06:47 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,19 +75,66 @@ static void	handle_spaces(t_liste *list, char *subline, int *i, int *start_of_to
 	*start_of_token = *i;	
 }
 
-// 
+// Here we should append line to subline[i] until we reach the closed quote
+// then we create one token with all the chars from subline[i] until end of line
 static void	handle_unclosed_quotes(t_liste *list, char *subline, int *i, int *quote, int *start_of_token)
 {
-	if (i > start_of_token && quote == 0)
+	char	*line;
+	char	*token;
+	char	*temp;
+	int		j;
+	
+	j = 0;
+	if (*i > *start_of_token && *quote == 0)
 	{
-		append_token(list, subline, start_of_token, i, NULL);
+		append_token(list, subline, *start_of_token, *i, NULL);
 		return ;
 	}
 	else
 	{
-		//function that should sort out all of my problems thanks
+		token = ft_substr(subline, *start_of_token, *i - *start_of_token);
+		while (1)
+		{
+			line = readline("> ");
+			if (!line)
+				break ;
+			if (!(ft_strchr(line, '\'')) && !(ft_strchr(line, '\"')))
+			{
+				temp = token;
+				token = ft_strjoin(temp, line);
+				free(temp);
+				temp = NULL;
+			}
+			if (*quote == SINGLE_QUOTE && ft_strchr(line, '\''))
+			{
+				j = 0;
+				while (line[j] != '\'')
+					j++;
+				line[j + 1] = '\0'; // POTENTIAL MEMORY LEAK HERE exit! 
+				temp = token;
+				token = ft_strjoin(temp, line);
+				free(temp);
+				temp = NULL;
+				append_token_simple(list, token, quote);
+				break ;
+			}
+			else if (*quote == DOUBLE_QUOTE && ft_strchr(line, '\"'))
+			{
+				j = 0;
+				while (line[j] != '\"')
+					j++;
+				line[j + 1] = '\0'; // POTENTIAL MEMORY LEAK HERE ! 
+				temp = token;
+				token = ft_strjoin(temp, line);
+				free(temp);
+				temp = NULL;
+				append_token_simple(list, token, quote);
+				break ;
+			}
+		}
 	}
 }
+
 // Function iterates over the "Subline" linked lists and seperates into tokens
 void	create_tokens(t_liste *list, char *subline)
 {	
@@ -113,7 +160,7 @@ void	create_tokens(t_liste *list, char *subline)
 		else
 			i++;
 	}
-	handle_unclosed_quotes()
+	handle_unclosed_quotes(list, subline, &i, &quote, &start_of_token);
     // if (i > start_of_token && quote == 0)
         // append_token(list, subline, start_of_token, i, NULL);
 }
