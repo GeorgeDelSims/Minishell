@@ -13,21 +13,6 @@
 
 #include "../includes/minishell.h"
 
-static int      count_env(char *line)
-{
-    int i;
-    int count;
-
-    i = 0;
-    count = 0;
-    while (line[i])
-    {
-        if (line[i] == '$')
-            count++;
-        i++;
-    }
-    return (count);
-}
 
 // Description needed
 static char *get_env_str(t_data *data, char *line, int *i)
@@ -47,13 +32,17 @@ static char *get_env_str(t_data *data, char *line, int *i)
         newstr = ft_strdup(get_env(data, tmp));
     else
         newstr = NULL;
-	ft_free(tmp);
+	free(tmp);
 	tmp = NULL;
 	*i += next_word_size - 1;
     return (newstr);
 }
 
-// Description needed
+// For each dollar sign in the original line, 
+// this function creates an element in the env_parse_array 
+// in which it copies the string relative to the environment variable called by the dollar sign 
+// if the dollar sign is not in front of a valid env variable, 
+// the function returns a null pointer to its corresponding place in the array
 static char **fill_env_parse_array(t_data *data, char *line)
 {
     char    **array;
@@ -72,17 +61,16 @@ static char **fill_env_parse_array(t_data *data, char *line)
 		if (line[i] == '$' && line[i])
 		{
 			array[row] = get_env_str(data, line, &i);
-			row++;
+            row++;
 		}
 		else
 			i++;
     }
     array[row] = NULL;
-	// ft_print_array(array);
     return (array); 
 }
 
-// checks the correct size and allocates memory for line to accommodate env variable values
+// checks the correct size and allocates memory for newline (to replace line) in order to accommodate env variable values
 static char *get_newline(t_data *data, char *line)
 {
     int     env_count;
@@ -90,13 +78,14 @@ static char *get_newline(t_data *data, char *line)
 
 	env_count = count_env(line);
 	data->env_parse_array = fill_env_parse_array(data, line);
-	// printf("count chars in array : %d\n", count_chars_in_array(data->env_parse_array));
 	newline = malloc(sizeof(char) * (ft_strlen(line) + count_chars_in_array(data->env_parse_array) + 1 + 2 * env_count));
 	if (!newline)
 		return (NULL);
 	return (newline);
 }
 
+
+// adds quotes around env variables in newline in order to tokenise them correctlzy
 static int	add_quote(char *newline, int j)
 {
 	newline[j] = '\"';
@@ -104,12 +93,42 @@ static int	add_quote(char *newline, int j)
 	return (j);
 }
 
-// is_env_var function to check if the word following the $ sign is actually an env variable 
-// static int  is_env_var(char *line, int i)
-// {
-    // 
-// }
+/*
+// Helper Function for include_env_vars into the newline 
+static void add_env_var_to_newline(t_data *data, char *newline, int row)
+{
+    char    *temp;
 
+    temp = newline;
+    printf("temp : %s\n", temp);
+    // if (data->env_parse_array && data->env_parse_array[0] != NULL)
+    newline = ft_strjoin(temp, data->env_parse_array[row]);
+    // else
+        // This is where you recreate the line by deleting the word that follows the $ sign
+    free(temp);
+    temp = NULL;
+}
+*/
+/*
+static int  replace_env_vars(t_data *data, int *row, int j, char **newline)
+{
+    char    *temp;
+
+    j = add_quote(*newline, j);
+    *newline[j] = '\0';
+    temp = *newline;
+    *newline = ft_strjoin(temp, data->env_parse_array[*row]);
+    free(temp);
+    temp = NULL;
+    j += ft_strlen(data->env_parse_array[*row]);
+    j = add_quote(*newline, j);
+    free(data->env_parse_array[*row]);
+    row++;
+    return (j);
+}
+*/
+
+// Main function that includes the environment variables in the newline 
 char    *include_env_vars(t_data *data, char *line)
 {
     char    *newline;
@@ -128,20 +147,31 @@ char    *include_env_vars(t_data *data, char *line)
         {
             while(line[i] && line[i] != ' ')
                 i++;
-			j = add_quote(newline, j);
-            newline[j] = '\0';
-            temp = newline;
-            newline = ft_strjoin(temp, data->env_parse_array[row]);
-            ft_free(temp);
-            temp = NULL;
-            j += ft_strlen(data->env_parse_array[row]);
-            j = add_quote(newline, j);
-            row++;
+            if (data->env_parse_array[row] != NULL)
+            {
+                // j = replace_env_vars(data, &row, j, &newline);
+                j = add_quote(newline, j);
+                newline[j] = '\0';
+                temp = newline;
+                newline = ft_strjoin(temp, data->env_parse_array[row]);
+                free(temp);
+                temp = NULL;
+                j += ft_strlen(data->env_parse_array[row]);
+                j = add_quote(newline, j);
+                free(data->env_parse_array[row]);
+                row++;
+            }
+            else
+            {
+                row++;
+                while (line[i] && line[i] != ' ')
+                    i++;
+            }
         }
         else
             newline[j++] = line[i++];
     }
     newline[j] = '\0';
-	ft_free_array(data->env_parse_array);
+	free(data->env_parse_array);
     return (newline);
 }

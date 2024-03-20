@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/19 15:45:28 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/20 11:10:47 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,10 +131,12 @@ void	    append_token(t_liste *list, char *subline, int start_of_token, int end_
 
 /*----env.c----*/
 char 		*get_env(t_data *data, char *var);
+int      	count_env(char *line);
+
 
 /*----env_parsing.c----*/
-char	*include_env_vars(t_data *data, char *line);
-void	init_paths(t_data *d, const char *envp[]);
+char		*include_env_vars(t_data *data, char *line);
+void		init_paths(t_data *d, const char *envp[]);
 
 /*----error.c----*/
 void		ft_error(const char *msg);
@@ -142,7 +144,6 @@ int			ft_error_syntax(char *msg, char *arg, int i);
 
 /*----error.c----*/
 void		free_lists(t_data *data);
-void		ft_free(void *ptr);
 void		ft_free_array(char **array);
 void		read_error(const char *msg);
 

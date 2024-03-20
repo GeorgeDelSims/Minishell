@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:57:15 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/19 16:05:30 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/20 11:16:24 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	create_sublines(char *line, t_data *data)
 		while (line[i] == '|' || line[i] == ' ')
 			i++;
 		ft_add_back_list(&data->list, ft_list_new(subline_temp));
-		ft_free(subline_temp);
+		free(subline_temp);
 		number_of_sublines--;
 	}
 }

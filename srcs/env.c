@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 12:04:27 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/19 12:15:18 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/20 09:47:50 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,20 @@ char *get_env(t_data *data, char *var)
 	var_len = ft_strlen(var);
 	res = ft_substr(data->envp_array[i], var_len + 1, len - (var_len + 1));
 	return (res);
+}
+
+int      count_env(char *line)
+{
+    int i;
+    int count;
+
+    i = 0;
+    count = 0;
+    while (line[i])
+    {
+        if (line[i] == '$')
+            count++;
+        i++;
+    }
+    return (count);
 }

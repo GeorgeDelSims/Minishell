@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:41:01 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/19 13:20:48 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/20 11:16:22 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_quit(char *line)
 {
-    ft_free(line);
+    free(line);
     return (1);
 }
 
@@ -35,12 +35,12 @@ int	main(int ac, char *av[], const char *envp[])
             add_history(line);
             tmp = line;
             line = include_env_vars(data, tmp);
-            ft_free(tmp);
+            free(tmp);
             parse(line, data);
             init_paths(data, envp);
             if (ft_strncmp(line, "exit", ft_strlen("exit")) == 0 && ft_quit(line))
                 break ;
-            ft_free(line);
+            free(line);
             free_lists(data);
         }
         // data->cmds->cmd = line; // Juste pour tester la fonction Exec
