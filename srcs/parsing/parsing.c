@@ -6,11 +6,11 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:57:15 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/20 11:16:24 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/20 12:16:52 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 // Count the number of pipes in a line
 static  int		pipe_count(char *line)

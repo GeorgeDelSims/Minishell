@@ -11,7 +11,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 
 // Description needed
@@ -85,54 +85,29 @@ static char *get_newline(t_data *data, char *line)
 }
 
 
-// adds quotes around env variables in newline in order to tokenise them correctlzy
-static int	add_quote(char *newline, int j)
+// replaces $USER by "gsims" or "mlepesqu" (quotation marks included) in order to tokenize
+static int replace_env_vars(t_data *data, int *row, int j, char **newline) 
 {
-	newline[j] = '\"';
-	j++;
-	return (j);
-}
-
-/*
-// Helper Function for include_env_vars into the newline 
-static void add_env_var_to_newline(t_data *data, char *newline, int row)
-{
-    char    *temp;
-
-    temp = newline;
-    printf("temp : %s\n", temp);
-    // if (data->env_parse_array && data->env_parse_array[0] != NULL)
-    newline = ft_strjoin(temp, data->env_parse_array[row]);
-    // else
-        // This is where you recreate the line by deleting the word that follows the $ sign
-    free(temp);
-    temp = NULL;
-}
-*/
-/*
-static int  replace_env_vars(t_data *data, int *row, int j, char **newline)
-{
-    char    *temp;
+    char *temp;
 
     j = add_quote(*newline, j);
-    *newline[j] = '\0';
+    (*newline)[j] = '\0';
     temp = *newline;
     *newline = ft_strjoin(temp, data->env_parse_array[*row]);
     free(temp);
-    temp = NULL;
     j += ft_strlen(data->env_parse_array[*row]);
     j = add_quote(*newline, j);
     free(data->env_parse_array[*row]);
-    row++;
+    data->env_parse_array[*row] = NULL;
+    (*row)++; 
     return (j);
 }
-*/
+
 
 // Main function that includes the environment variables in the newline 
 char    *include_env_vars(t_data *data, char *line)
 {
     char    *newline;
-    char    *temp;
     int     i;
     int     j;
     int     row;
@@ -145,27 +120,13 @@ char    *include_env_vars(t_data *data, char *line)
     {
         if (line[i] == '$')
         {
-            while(line[i] && line[i] != ' ')
-                i++;
+            i = skip_spaces(line, i);
             if (data->env_parse_array[row] != NULL)
-            {
-                // j = replace_env_vars(data, &row, j, &newline);
-                j = add_quote(newline, j);
-                newline[j] = '\0';
-                temp = newline;
-                newline = ft_strjoin(temp, data->env_parse_array[row]);
-                free(temp);
-                temp = NULL;
-                j += ft_strlen(data->env_parse_array[row]);
-                j = add_quote(newline, j);
-                free(data->env_parse_array[row]);
-                row++;
-            }
+                j = replace_env_vars(data, &row, j, &newline);
             else
             {
                 row++;
-                while (line[i] && line[i] != ' ')
-                    i++;
+                i = skip_spaces(line, i);
             }
         }
         else

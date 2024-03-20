@@ -6,11 +6,11 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:32:11 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/19 16:04:09 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/20 12:18:27 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 // Opens the quotes when it encounters a second quote of a certain type
 static void	open_quotes(char *subline, int *i, int *quote, int *start_of_token, int quote_type)

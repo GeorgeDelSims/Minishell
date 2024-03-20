@@ -6,11 +6,11 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:07:29 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/19 16:03:43 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/20 12:16:57 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 // Appends a token onto the linked list of tokens 
 void	append_token(t_liste *list, char *subline, int start_of_token, int end_of_token, int *quote)

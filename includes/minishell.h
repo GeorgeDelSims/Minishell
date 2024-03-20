@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/20 11:10:47 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/20 11:50:25 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,8 @@ int			ft_strcmp(const char *s1, const char *s2);
 int			get_next_word_size(char *line, int i);
 int			count_chars_in_array(char	**array);
 void 		remove_char(char *str, char char_to_remove);
-
+int			skip_spaces(char *line, int index);
+int			add_quote(char *line, int j);
 
 /*----exec.c----*/
 int			ft_execute(t_data *data, char *const *envp);
@@ -142,7 +143,7 @@ void		init_paths(t_data *d, const char *envp[]);
 void		ft_error(const char *msg);
 int			ft_error_syntax(char *msg, char *arg, int i);
 
-/*----error.c----*/
+/*----free.c----*/
 void		free_lists(t_data *data);
 void		ft_free_array(char **array);
 void		read_error(const char *msg);
