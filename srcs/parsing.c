@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:57:15 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/19 13:17:48 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:43:34 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	create_sublines(char *line, t_data *data)
 	int			j;
 	int			number_of_sublines;
 	char 		*subline_temp;
-	
+
 	number_of_sublines = pipe_count(line) + 1;
 	i = 0;
 	while (number_of_sublines > 0)
@@ -87,5 +87,5 @@ void	parse(char *line, t_data *data)
 	init_types(data);
 	check_syntax(data);
 	update_list(data);
-	ft_print_lists(data);
+	//ft_print_lists(data);
 }

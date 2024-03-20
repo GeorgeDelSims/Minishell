@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   listutils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:57:29 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/18 17:13:56 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/20 14:29:05 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ t_liste	*ft_list_new(char *subline)
 	new->cmd = NULL;
 	new->token = NULL;
 	new->next = NULL;
+	new->in = STDIN_FILENO;
+	new->out = STDOUT_FILENO;
 	return (new);
 }
 

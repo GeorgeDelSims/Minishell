@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:41:01 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/19 13:20:48 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/20 22:57:01 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	main(int ac, char *av[], const char *envp[])
     while (1)
     {
         line = readline("minishell> ");
+		if (line == NULL)
+			break;
         if (line && *line) 
         {
             add_history(line);
@@ -37,14 +39,13 @@ int	main(int ac, char *av[], const char *envp[])
             line = include_env_vars(data, tmp);
             ft_free(tmp);
             parse(line, data);
-            init_paths(data, envp);
+            ft_exec(data, (char *const*)envp);
             if (ft_strncmp(line, "exit", ft_strlen("exit")) == 0 && ft_quit(line))
                 break ;
             ft_free(line);
             free_lists(data);
         }
         // data->cmds->cmd = line; // Juste pour tester la fonction Exec
-        // ft_execute(data, (char* const*)envp);
     }
     rl_clear_history();
     return (EXIT_SUCCESS);

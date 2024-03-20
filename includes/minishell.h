@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/19 13:05:09 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/20 22:16:08 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void		ft_free_array(char **array);
 t_data		*init_minishell(int ac, char *av[], const char *envp[]);
 void		init_types(t_data *d);
 void		update_list(t_data *d);
+void		init_args(t_data *d);
 
 /*----listutils.c----*/
 t_liste		*ft_list_new(char *subline);
@@ -114,9 +115,11 @@ int			ft_strcmp(const char *s1, const char *s2);
 /*----utils.c----*/
 int			get_next_word_size(char *line, int i);
 int			count_chars_in_array(char	**array);
+int			is_builtin(char *content);
 
 /*----exec.c----*/
-int			ft_execute(t_data *data, char *const *envp);
+void		ft_execute(t_data *data, char *const *envp);
+void		ft_exec(t_data *data, char *const *envp);
 int			ft_access(t_data *data);
 void	    here_doc(t_data *d);
 
@@ -131,8 +134,9 @@ void	    append_token(t_liste *list, char *subline, int start_of_token, int end_
 char 		*get_env(t_data *data, char *var);
 
 /*----env_parsing.c----*/
-char	*include_env_vars(t_data *data, char *line);
-void	init_paths(t_data *d, const char *envp[]);
+char		*include_env_vars(t_data *data, char *line);
+void		init_paths(t_data *d, const char *envp[]);
+void		init_paths_builtin(t_data *d);
 
 /*----error.c----*/
 void		ft_error(const char *msg);

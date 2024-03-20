@@ -6,37 +6,40 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:26:30 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/15 18:03:34 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/20 23:13:41 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// int	ft_access(t_data *data)
-// {
-// 	int		i;
-// 	char	*path;
+void	ft_execute(t_data *data, char *const *envp)
+{
+	int		status;
+	pid_t	pid;
 
-// 	i = 0;
-// 	while (data->bin_paths[i])
-// 	{
-// 		path = ft_strjoin(data->bin_paths[i], data->list->token->content);		
-// 		if (access(path, X_OK) == 0)
-// 		{
-// 			data->list->token->cmd_path = (const char *)path;
-// 			return (1);
-// 		}
-// 		free(path);
-// 		i++;
-// 	}
-// 	return (0);
-// }
-// 
-// 
-// int	ft_execute(t_data *data, char *const *envp)
-// {
-	// if (ft_access(data) == 0)
-		// return (0);
-	// else
-		// return (execve(data->list->token->cmd_path, data->list->token->args, envp));
-// }
+	pid = fork();
+	if (pid == 0)
+		execve(data->list->cmd_path, data->list->args, envp);
+	else if (pid > 0)
+		waitpid(pid, &status, 0);
+}
+
+void	ft_exec(t_data *data, char *const *envp)
+{
+	t_liste	*tmp;
+
+	tmp = data->list;
+	while (tmp)
+	{
+		if (tmp->cmd)
+		{
+			if (is_builtin(tmp->cmd) == BUILTIN)
+				init_paths_builtin(data);
+			else
+				init_paths(data, (const char **)envp);
+			if (data->list->cmd_path)
+				ft_execute(data, envp);
+		}
+		tmp = tmp->next;
+	}
+}

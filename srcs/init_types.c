@@ -6,7 +6,7 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 11:05:02 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/19 07:52:25 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/20 13:26:08 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,4 @@ void	init_types(t_data *d)
 			tmp = tmp->next;
 		}
 	}
-	ft_print_lists(d);
 }
