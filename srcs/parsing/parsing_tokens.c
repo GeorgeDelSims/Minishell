@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:32:11 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/20 12:18:27 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/20 12:28:45 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,19 @@ static void	handle_spaces(t_liste *list, char *subline, int *i, int *start_of_to
 	*start_of_token = *i;	
 }
 
+// 
+static void	handle_unclosed_quotes(t_liste *list, char *subline, int *i, int *quote, int *start_of_token)
+{
+	if (i > start_of_token && quote == 0)
+	{
+		append_token(list, subline, start_of_token, i, NULL);
+		return ;
+	}
+	else
+	{
+		//function that should sort out all of my problems thanks
+	}
+}
 // Function iterates over the "Subline" linked lists and seperates into tokens
 void	create_tokens(t_liste *list, char *subline)
 {	
@@ -100,6 +113,7 @@ void	create_tokens(t_liste *list, char *subline)
 		else
 			i++;
 	}
-    if (i > start_of_token && quote == 0)
-        append_token(list, subline, start_of_token, i, NULL);
+	handle_unclosed_quotes()
+    // if (i > start_of_token && quote == 0)
+        // append_token(list, subline, start_of_token, i, NULL);
 }

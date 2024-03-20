@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/20 11:50:25 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/20 12:21:02 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ typedef struct s_data
 
 /*- SRCS -*/
 /*----main.c----*/
-void		ft_free_array(char **array);
 
 /*----init.c----*/
 t_data		*init_minishell(int ac, char *av[], const char *envp[]);
@@ -123,6 +122,7 @@ int			ft_execute(t_data *data, char *const *envp);
 int			ft_access(t_data *data);
 void	    here_doc(t_data *d);
 
+/*--PARSING--*/
 /*----parsing.c----*/
 void		parse(char *line, t_data *data);
 
@@ -130,10 +130,10 @@ void		parse(char *line, t_data *data);
 void		create_tokens(t_liste *list, char *subline);
 void	    append_token(t_liste *list, char *subline, int start_of_token, int end_of_token, int *quote);
 
+/*--ENV--*/
 /*----env.c----*/
 char 		*get_env(t_data *data, char *var);
 int      	count_env(char *line);
-
 
 /*----env_parsing.c----*/
 char		*include_env_vars(t_data *data, char *line);
