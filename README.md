@@ -25,6 +25,10 @@ GITHUB MARCHE A SUIVRE :
 7. Pull les changements vers la branche principale locale (le main sur nos machines individuelles). -> “git checkout main” -> “git pull origin main”
 
 
+NOTES: 
+- Quand on utilise readline pour le heredoc ou pour le parsing des "" non-fermees, on se retrouve avec un probleme avec l'historique de readline. Peut-etre utiliser GNL a la place pour conserver l'historique ? 
+
+
 FONCTIONS: 
 
 ## char* readline(const char *prompt)

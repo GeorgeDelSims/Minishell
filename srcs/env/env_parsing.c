@@ -93,13 +93,16 @@ static int replace_env_vars(t_data *data, int *row, int j, char **newline)
     j = add_quote(*newline, j);
     (*newline)[j] = '\0';
     temp = *newline;
-    *newline = ft_strjoin(temp, data->env_parse_array[*row]);
-    free(temp);
+    *newline = ft_strjoin(temp, data->env_parse_array[*row]); // ABORT TRAP HERE FOR SOME REASON
+    if (temp)
+        free(temp);
     j += ft_strlen(data->env_parse_array[*row]);
     j = add_quote(*newline, j);
-    free(data->env_parse_array[*row]);
+    if (data->env_parse_array[*row])
+        free(data->env_parse_array[*row]);
     data->env_parse_array[*row] = NULL;
     (*row)++; 
+    data->quote = 0;
     return (j);
 }
 
@@ -133,6 +136,7 @@ char    *include_env_vars(t_data *data, char *line)
             newline[j++] = line[i++];
     }
     newline[j] = '\0';
+    printf("newline : %s\n", newline);
 	free(data->env_parse_array);
     return (newline);
 }

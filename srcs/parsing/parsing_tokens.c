@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:32:11 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/21 09:49:24 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/21 11:36:59 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,4 @@ void	create_tokens(t_liste *list, char *subline)
 			i++;
 	}
 	handle_token_create_end(list, subline, &i, &quote, &start_of_token);
-    // if (i > start_of_token && quote == 0)
-        // append_token(list, subline, start_of_token, i, NULL);
 }

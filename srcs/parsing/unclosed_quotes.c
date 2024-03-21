@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 09:48:22 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/21 10:45:09 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/21 12:07:34 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,17 @@ void	handle_unclosed_quotes(t_liste *list, char *subline, int *i, int *quote, in
 // if quotes are still open, it moves to handle_unclosed_quotes
 void	handle_token_create_end(t_liste *list, char *subline, int *i, int *quote, int *start_of_token)
 {
-	if (*i > *start_of_token && *quote == 0)
+	if (((*quote == SINGLE_QUOTE && subline[*i - 1] == '\'') || 
+		(*quote == DOUBLE_QUOTE && subline[*i - 1] == '\"')) 
+			&& subline[*i - 2] != ' ')
+		*quote = 0;
+	else if (*i > *start_of_token && *quote == 0)
 	{
 		append_token(list, subline, *start_of_token, *i, NULL);
 		return ;
 	}
-	else
+	else if (*quote == SINGLE_QUOTE || *quote == DOUBLE_QUOTE)
 		handle_unclosed_quotes(list, subline, i, quote, start_of_token);
+	else
+		return ;
 }
-
