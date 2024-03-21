@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:57:15 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/20 12:16:52 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/21 09:55:50 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ static void	create_sublines(char *line, t_data *data)
 	}
 }
 
+// MAIN PARSING FUNCTION 
 void	parse(char *line, t_data *data)
 {
 	t_liste		*curr;

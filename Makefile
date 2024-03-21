@@ -6,7 +6,7 @@
 #    By: gsims <gsims@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/06 11:36:48 by georgesims        #+#    #+#              #
-#    Updated: 2024/03/20 12:15:38 by gsims            ###   ########.fr        #
+#    Updated: 2024/03/21 09:52:18 by gsims            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 
 CHECKER = check
 UTILS = listutils listutils2 error free print_utils
-PARSING = parsing parsing_tokens parsing_tokens2 parsing_utils
+PARSING = parsing parsing_tokens parsing_tokens_append parsing_utils unclosed_quotes
 ENV = env env_parsing
 MAIN = main init exec init_types here_doc update_list access
 
