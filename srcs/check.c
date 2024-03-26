@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 08:26:05 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/19 07:14:38 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/26 14:36:28 by mlepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	ft_error_syntax(char *msg, char *arg, int i)
 		printf("minishell: %s\n", msg);
 	else if (i == 2)
 		printf("minishell: %s: %s\n", arg, msg);
+	else if (i == 3)
+		printf("minishell: cd: %s: %s\n", arg, msg);
 	return (1);
 }
 

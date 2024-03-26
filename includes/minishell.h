@@ -6,7 +6,7 @@
 /*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/26 13:06:43 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:39:12 by mlepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct s_env
 // Main data structure 
 typedef struct s_data
 {
-	char			**envp;
+	//char			**envp;
 	char			**bin_paths;
 	t_liste			*list; // listes chainees de tokens
 	t_list			*hdoc;
@@ -129,6 +129,7 @@ void	    here_doc(t_data *d);
 
 /*----builtin.c----*/
 void	pwd_cmd(void);
+void	cd_cmd(t_data *d);
 
 /*--PARSING--*/
 /*----parsing.c----*/
