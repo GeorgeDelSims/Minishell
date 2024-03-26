@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:26:30 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/26 11:01:32 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/26 13:06:48 by mlepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void	ft_exec(t_data *data, char *const *envp)
 		if (tmp->cmd)
 		{
 			if (is_builtin(tmp->cmd) == BUILTIN)
-				init_paths_builtin(data);
+				init_builtin(data);
 			else
 				init_paths(data, (const char **)envp);
-			if (data->list->cmd_path)
+			if (data->list->cmd_path && is_builtin(tmp->cmd) == CMD)
 				ft_execute(data, envp);
 		}
 		tmp = tmp->next;
