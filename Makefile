@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+         #
+#    By: gsims <gsims@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/06 11:36:48 by georgesims        #+#    #+#              #
-#    Updated: 2024/03/26 10:47:56 by mathieu          ###   ########.fr        #
+#    Updated: 2024/03/26 13:01:15 by gsims            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ clean:
 	$(MAKE) clean -C ./libft
 	rm -rf $(OBJ_DIRS)
 	rm -rf $(OBJS)
-	rm -rf $(BUILTIN_DIRS)
+#	rm -rf $(BUILTIN_DIRS)
     
 fclean: clean
 	$(MAKE) fclean -C ./libft

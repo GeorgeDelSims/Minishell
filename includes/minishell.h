@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/26 10:39:23 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/26 11:14:12 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ typedef struct s_data
 	char			**envp;
 	char			**bin_paths;
 	t_liste			*list; // listes chainees de tokens
-	t_list			*hdoc;
+	t_list			*hdoc; // liste chainee (content + next) -> pour garder le contenu de heredoc 
 	char			**envp_array; // array  qui comprend toutes les var d'environnement pour exec
 	char      		**env_parse_array; // array qui ne comprend que les variables d'environnement relatives a la commande appelee
 	int				quote;
