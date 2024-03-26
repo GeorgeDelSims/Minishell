@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 09:57:24 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/20 11:55:19 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/26 11:08:51 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	here_doc_init(t_token *tmp, t_data *d)
 		line = readline("> ");
 		if (!line)
 			break ;
-		printf("content :         %s\nline :             %s\n", tmp->next->content, line);
+		// printf("content :         %s\nline :             %s\n", tmp->next->content, line);
 		if (tmp->next && ft_strcmp(line, tmp->next->content) == 0)
 		{
 			free(line);
