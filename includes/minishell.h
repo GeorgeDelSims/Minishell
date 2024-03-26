@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/26 10:39:23 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/26 13:06:43 by mlepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,9 @@ void		ft_exec(t_data *data, char *const *envp);
 int			ft_access(t_data *data);
 void	    here_doc(t_data *d);
 
+/*----builtin.c----*/
+void	pwd_cmd(void);
+
 /*--PARSING--*/
 /*----parsing.c----*/
 void		parse(char *line, t_data *data);
@@ -151,7 +154,7 @@ int      	count_env(char *line);
 /*----env_parsing.c----*/
 char			*include_env_vars(t_data *data, char *line);
 void			init_paths(t_data *d, const char *envp[]);
-void		init_paths_builtin(t_data *d);
+void		init_builtin(t_data *d);
 
 /*----error.c----*/
 void		ft_error(const char *msg);

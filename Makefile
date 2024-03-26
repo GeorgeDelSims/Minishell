@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+         #
+#    By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/06 11:36:48 by georgesims        #+#    #+#              #
-#    Updated: 2024/03/26 10:47:56 by mathieu          ###   ########.fr        #
+#    Updated: 2024/03/26 13:05:45 by mlepesqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ UTILS = listutils listutils2 error free print_utils
 PARSING = parsing parsing_tokens parsing_tokens_append parsing_utils unclosed_quotes
 ENV = env env_parsing
 MAIN = main init exec init_types here_doc update_list access
+BUILTINS = pwd
 
 LIBFT = ./libft/libft.a
 READLINE_DIR = $(HOME)/.brew/opt/readline/include
@@ -27,18 +28,17 @@ READLINE_LIB = $(HOME)/.brew/opt/readline/lib
 PARSING_DIR = parsing
 ENV_DIR = env
 SRCS_DIR = srcs
+BUILTINS_DIR = builtins
 SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(UTILS)))\
 	$(addprefix $(SRCS_DIR)/$(PARSING_DIR)/, $(addsuffix .c, $(PARSING)))\
 	$(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(MAIN)))\
 	$(addprefix $(SRCS_DIR)/$(ENV_DIR)/, $(addsuffix .c, $(ENV)))\
 	$(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(CHECKER)))\
-
-BUILTIN_DIRS = pwd #echo env cd unset export exit
-BUILTIN_MAKEFILES = $(addsuffix /Makefile, $(BUILTIN_DIRS))
+	$(addprefix $(SRCS_DIR)/$(BUILTINS_DIR)/, $(addsuffix .c, $(BUILTINS)))\
 
 # Convert source file names to object file names in the OBJ_DIRS directory
 OBJ_DIR = obj
-OBJ_DIRS = $(OBJ_DIR) $(addprefix $(OBJ_DIR)/, $(PARSING_DIR)) $(addprefix $(OBJ_DIR)/, $(ENV_DIR))
+OBJ_DIRS = $(OBJ_DIR) $(addprefix $(OBJ_DIR)/, $(PARSING_DIR)) $(addprefix $(OBJ_DIR)/, $(ENV_DIR)) $(addprefix $(OBJ_DIR)/, $(BUILTINS_DIR))
 OBJS = $(SRCS:$(SRCS_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 # Ensures that obj directories are created before the obj files
@@ -46,7 +46,7 @@ $(OBJS): | $(OBJ_DIRS)
 
 # Rule to build the executable: depends on object directory, object files, and the LIBFT library
 # Compiles the object files and LIBFT library into the executable, linking with readline library
-all: $(NAME) $(BUILTIN_DIRS)
+all: $(NAME)
 
 $(LIBFT):
 	$(MAKE) -C ./libft
@@ -64,14 +64,10 @@ $(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c
 	
 # $< is the name of the prerequisite (the .c file), and $@ is the name of the target (the .o file)
 
-$(BUILTIN_DIRS): %:
-	$(MAKE) -C srcs/builtins/$@
-
 clean:
 	$(MAKE) clean -C ./libft
 	rm -rf $(OBJ_DIRS)
 	rm -rf $(OBJS)
-	rm -rf $(BUILTIN_DIRS)
     
 fclean: clean
 	$(MAKE) fclean -C ./libft
@@ -79,4 +75,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re $(BUILTIN_DIRS)
+.PHONY: all clean fclean re
