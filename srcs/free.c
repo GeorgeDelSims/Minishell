@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 11:02:05 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/20 11:16:15 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/26 15:28:43 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,3 +58,21 @@ void	free_lists(t_data *data)
 	}
 	data->list = NULL;
 }
+
+
+// Free all recorded data from structures
+void	free_all(t_data *data)
+{
+	if (data->bin_paths)
+		ft_free_array(data->bin_paths);
+	if (data->envp_array)
+		ft_free_array(data->envp_array);
+	if (data->env_parse_array)
+		ft_free_array(data->env_parse_array);
+	if (data->list)
+		free_lists(data);
+	if (data->hdoc)
+		free(data->hdoc);
+	free(data);
+}
+

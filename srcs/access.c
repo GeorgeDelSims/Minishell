@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   access.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:33:44 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/26 14:39:31 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:32:46 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	init_builtin(t_data *d)
 		cd_cmd(d);
 	// else if (ft_strcmp(d->list->cmd, "unset") == 0)
 	// 	unset_cmd(d);
-	// else if (ft_strcmp(d->list->cmd, "export") == 0)
-	// 	export_cmd(d);
+	else if (ft_strcmp(d->list->cmd, "export") == 0)
+		export_cmd(d);
 	// else if (ft_strcmp(d->list->cmd, "exit") == 0)
 	// 	exit_cmd(d);
 }
