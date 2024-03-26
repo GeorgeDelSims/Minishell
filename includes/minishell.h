@@ -6,7 +6,7 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/20 22:16:08 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/26 10:17:08 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_liste
 	struct s_liste	*next;
 }					t_liste;
 
-typedef struct 		s_env
+typedef struct s_env
 {
 	char			*content;
 	struct s_env	*next;

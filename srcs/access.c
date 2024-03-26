@@ -6,7 +6,7 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:33:44 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/20 23:34:44 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/26 10:16:47 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static char	*find_path(const char *envp[])
 	path = ft_substr(ft_strdup(envp[i]), 5, ft_strlen(envp[i]));
 	return (path);
 }
+
 char	*get_pwd(t_data *d)
 {
 	char	*pwd;
