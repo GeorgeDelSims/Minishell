@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:59:36 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/19 13:32:44 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/26 10:31:26 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,11 @@ void	update_list(t_data *d)
 {
 	t_liste	*tmp;
 	t_token	*t;
-	int		i;
 
 	tmp = d->list;
 	while (tmp)
 	{
 		t = d->list->token;
-		i = 0;
 		while (t)
 		{
 			if (t->type == CMD || t->type == BUILTIN)
@@ -59,7 +57,6 @@ void	update_list(t_data *d)
 			else if (t->type == MET && t && t->next)
 				update_standards(d, t);
 			t = t->next;
-			i++;
 		}
 		tmp = tmp->next;
 	}
