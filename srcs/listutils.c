@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:57:29 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/18 17:13:56 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/20 11:09:51 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_liste	*ft_list_new(char *subline)
 		new->subline = ft_strdup(subline);
 	else
 	{
-		ft_free(new);
+		free(new);
 		return (NULL);
 	}
 	new->cmd = NULL;

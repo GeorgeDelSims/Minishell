@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/19 14:18:18 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/21 10:56:42 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_liste
 	const char		*cmd_path; // "usr/bin/cat"
 	char			**args; // options, file, args... (premier elmt commande)
 	int				*delimiter_array;
+	struct s_data	*data;
 	struct s_liste	*next;
 }					t_liste;
 
@@ -81,12 +82,12 @@ typedef struct s_data
 	t_list			*hdoc;
 	char			**envp_array; // array  qui comprend toutes les var d'environnement pour exec
 	char      		**env_parse_array; // array qui ne comprend que les variables d'environnement relatives a la commande appelee
+	int				quote;
 	int				fd[2];
 }					t_data;
 
 /*- SRCS -*/
 /*----main.c----*/
-void		ft_free_array(char **array);
 
 /*----init.c----*/
 t_data		*init_minishell(int ac, char *av[], const char *envp[]);
@@ -115,34 +116,45 @@ int			ft_strcmp(const char *s1, const char *s2);
 int			get_next_word_size(char *line, int i);
 int			count_chars_in_array(char	**array);
 void 		remove_char(char *str, char char_to_remove);
-
+int			skip_spaces(char *line, int index);
+int			add_quote(char *line, int j);
 
 /*----exec.c----*/
 int			ft_execute(t_data *data, char *const *envp);
 int			ft_access(t_data *data);
 void	    here_doc(t_data *d);
 
+/*--PARSING--*/
 /*----parsing.c----*/
 void		parse(char *line, t_data *data);
 
 /*----parsing_tokens.c----*/
 void		create_tokens(t_liste *list, char *subline);
-void	    append_token(t_liste *list, char *subline, int start_of_token, int end_of_token);
 
+
+/*----parsing_tokens_append.c----*/
+void	    append_token(t_liste *list, char *subline, int start_of_token, int end_of_token, int *quote);
+void		append_token_simple(t_liste *list, char *token, int *quote);
+
+/*----parsing_tokens.c----*/
+void		handle_unclosed_quotes(t_liste *list, char *subline, int *i, int *quote, int *start_of_token);
+void		handle_token_create_end(t_liste *list, char *subline, int *i, int *quote, int *start_of_token);
+
+/*--ENV--*/
 /*----env.c----*/
 char 		*get_env(t_data *data, char *var);
+int      	count_env(char *line);
 
 /*----env_parsing.c----*/
-char	*include_env_vars(t_data *data, char *line);
-void	init_paths(t_data *d, const char *envp[]);
+char		*include_env_vars(t_data *data, char *line);
+void		init_paths(t_data *d, const char *envp[]);
 
 /*----error.c----*/
 void		ft_error(const char *msg);
 int			ft_error_syntax(char *msg, char *arg, int i);
 
-/*----error.c----*/
+/*----free.c----*/
 void		free_lists(t_data *data);
-void		ft_free(void *ptr);
 void		ft_free_array(char **array);
 void		read_error(const char *msg);
 

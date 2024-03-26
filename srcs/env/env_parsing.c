@@ -11,25 +11,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
-
-static int      count_env(char *line)
-{
-    int i;
-    int count;
-
-    i = 0;
-    count = 0;
-    while (line[i])
-    {
-        if (line[i] == '$')
-            count++;
-        i++;
-    }
-    return (count);
-}
+#include "../../includes/minishell.h"
 
 
+// Description needed
 static char *get_env_str(t_data *data, char *line, int *i)
 {
     char    *newstr;
@@ -45,12 +30,19 @@ static char *get_env_str(t_data *data, char *line, int *i)
 	ft_strlcpy(tmp, line + *i, next_word_size);
     if (get_env(data, tmp))
         newstr = ft_strdup(get_env(data, tmp));
-	ft_free(tmp);
+    else
+        newstr = NULL;
+	free(tmp);
 	tmp = NULL;
 	*i += next_word_size - 1;
     return (newstr);
 }
 
+// For each dollar sign in the original line, 
+// this function creates an element in the env_parse_array 
+// in which it copies the string relative to the environment variable called by the dollar sign 
+// if the dollar sign is not in front of a valid env variable, 
+// the function returns a null pointer to its corresponding place in the array
 static char **fill_env_parse_array(t_data *data, char *line)
 {
     char    **array;
@@ -69,17 +61,16 @@ static char **fill_env_parse_array(t_data *data, char *line)
 		if (line[i] == '$' && line[i])
 		{
 			array[row] = get_env_str(data, line, &i);
-			row++;
+            row++;
 		}
 		else
 			i++;
     }
     array[row] = NULL;
-	ft_print_array(array);
     return (array); 
 }
 
-// checks the correct size and allocates memory for line to accommodate env variable values
+// checks the correct size and allocates memory for newline (to replace line) in order to accommodate env variable values
 static char *get_newline(t_data *data, char *line)
 {
     int     env_count;
@@ -87,30 +78,39 @@ static char *get_newline(t_data *data, char *line)
 
 	env_count = count_env(line);
 	data->env_parse_array = fill_env_parse_array(data, line);
-	// printf("count chars in array : %d\n", count_chars_in_array(data->env_parse_array));
 	newline = malloc(sizeof(char) * (ft_strlen(line) + count_chars_in_array(data->env_parse_array) + 1 + 2 * env_count));
 	if (!newline)
 		return (NULL);
 	return (newline);
 }
 
-static int	add_quote(char *newline, int j)
+
+// replaces $USER by "gsims" or "mlepesqu" (quotation marks included) in order to tokenize
+static int replace_env_vars(t_data *data, int *row, int j, char **newline) 
 {
-	newline[j] = '\"';
-	j++;
-	return (j);
+    char *temp;
+
+    j = add_quote(*newline, j);
+    (*newline)[j] = '\0';
+    temp = *newline;
+    *newline = ft_strjoin(temp, data->env_parse_array[*row]); // ABORT TRAP HERE FOR SOME REASON
+    if (temp)
+        free(temp);
+    j += ft_strlen(data->env_parse_array[*row]);
+    j = add_quote(*newline, j);
+    if (data->env_parse_array[*row])
+        free(data->env_parse_array[*row]);
+    data->env_parse_array[*row] = NULL;
+    (*row)++; 
+    data->quote = 0;
+    return (j);
 }
 
-// is_env_var function to check if the word following the $ sign is actually an env variable 
-// static int  is_env_var(char *line, int i)
-// {
-    // 
-// }
 
+// Main function that includes the environment variables in the newline 
 char    *include_env_vars(t_data *data, char *line)
 {
     char    *newline;
-    char    *temp;
     int     i;
     int     j;
     int     row;
@@ -123,22 +123,20 @@ char    *include_env_vars(t_data *data, char *line)
     {
         if (line[i] == '$')
         {
-            while(line[i] && line[i] != ' ')
-                i++;
-			j = add_quote(newline, j);
-            newline[j] = '\0';
-            temp = newline;
-            newline = ft_strjoin(temp, data->env_parse_array[row]);
-            ft_free(temp);
-            temp = NULL;
-            j += ft_strlen(data->env_parse_array[row]);
-            j = add_quote(newline, j);
-            row++;
+            i = skip_spaces(line, i);
+            if (data->env_parse_array[row] != NULL)
+                j = replace_env_vars(data, &row, j, &newline);
+            else
+            {
+                row++;
+                i = skip_spaces(line, i);
+            }
         }
         else
             newline[j++] = line[i++];
     }
     newline[j] = '\0';
-	ft_free_array(data->env_parse_array);
+    printf("newline : %s\n", newline);
+	free(data->env_parse_array);
     return (newline);
 }
