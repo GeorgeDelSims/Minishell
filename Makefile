@@ -6,7 +6,7 @@
 #    By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/06 11:36:48 by georgesims        #+#    #+#              #
-#    Updated: 2024/03/26 13:05:45 by mlepesqu         ###   ########.fr        #
+#    Updated: 2024/03/26 14:09:07 by mlepesqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ UTILS = listutils listutils2 error free print_utils
 PARSING = parsing parsing_tokens parsing_tokens_append parsing_utils unclosed_quotes
 ENV = env env_parsing
 MAIN = main init exec init_types here_doc update_list access
-BUILTINS = pwd
+BUILTINS = pwd cd
 
 LIBFT = ./libft/libft.a
 READLINE_DIR = $(HOME)/.brew/opt/readline/include

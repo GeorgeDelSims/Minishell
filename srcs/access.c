@@ -6,7 +6,7 @@
 /*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:33:44 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/26 12:59:39 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:39:31 by mlepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	init_builtin(t_data *d)
 	// 	echo_cmd(d);
 	// else if (ft_strcmp(d->list->cmd, "env") == 0)
 	// 	env_cmd(d);
-	// else if (ft_strcmp(d->list->cmd, "cd") == 0)
-	// 	cd_cmd(d);
+	else if (ft_strcmp(d->list->cmd, "cd") == 0)
+		cd_cmd(d);
 	// else if (ft_strcmp(d->list->cmd, "unset") == 0)
 	// 	unset_cmd(d);
 	// else if (ft_strcmp(d->list->cmd, "export") == 0)
