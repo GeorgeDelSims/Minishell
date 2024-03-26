@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/26 14:39:12 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:33:20 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,11 @@ void		ft_add_back(t_token **token, t_token *new);
 void		ft_add_front(t_token **token, t_token *new);
 int			token_size(t_token *token);
 
+/*----utils.c----*/
+int 		get_array_size(char **array);
+int 		ft_exit(t_data *data, char *print_message, int success_or_failure);
+
+
 /*----check.c----*/
 void		check_syntax(t_data *data);
 int			check_cmd(const char *is_cmd);
@@ -128,8 +133,10 @@ int			ft_access(t_data *data);
 void	    here_doc(t_data *d);
 
 /*----builtin.c----*/
-void	pwd_cmd(void);
-void	cd_cmd(t_data *d);
+void		pwd_cmd(void);
+void		cd_cmd(t_data *d);
+void		export_cmd(t_data *data);
+
 
 /*--PARSING--*/
 /*----parsing.c----*/
@@ -165,5 +172,6 @@ int			ft_error_syntax(char *msg, char *arg, int i);
 void		free_lists(t_data *data);
 void		ft_free_array(char **array);
 void		read_error(const char *msg);
+void		free_all(t_data *data);
 
 #endif
