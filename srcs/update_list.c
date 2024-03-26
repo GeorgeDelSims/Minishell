@@ -6,7 +6,7 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:59:36 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/26 10:31:26 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/26 10:42:05 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	update_standards(t_data *data, t_token *token)
 		if (d->list->in == -1)
 			ft_error_syntax("No such file or directory", t->next->content, 2);
 	}
-}	
+}
 
 void	update_list(t_data *d)
 {

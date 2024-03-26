@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_types.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 11:05:02 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/19 16:06:09 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/26 10:40:38 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,4 @@ void	init_types(t_data *d)
 			tmp = tmp->next;
 		}
 	}
-	ft_print_lists(d);
 }

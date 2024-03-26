@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:57:15 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/21 09:55:50 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/26 10:42:21 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../includes/minishell.h"
 
 // Count the number of pipes in a line
 static  int		pipe_count(char *line)
@@ -67,12 +67,11 @@ static void	create_sublines(char *line, t_data *data)
 		while (line[i] == '|' || line[i] == ' ')
 			i++;
 		ft_add_back_list(&data->list, ft_list_new(subline_temp));
-		free(subline_temp);
+		ft_free(subline_temp);
 		number_of_sublines--;
 	}
 }
 
-// MAIN PARSING FUNCTION 
 void	parse(char *line, t_data *data)
 {
 	t_liste		*curr;
@@ -88,5 +87,5 @@ void	parse(char *line, t_data *data)
 	init_types(data);
 	check_syntax(data);
 	update_list(data);
-	// ft_print_lists(data);
+	ft_print_lists(data);
 }

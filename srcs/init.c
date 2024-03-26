@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:10:58 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/19 11:57:54 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/20 14:09:36 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,51 @@ t_data	*init_minishell(int ac, char *av[], const char *envp[])
 	init_env(data, envp);
 	// init_binpaths(data);
 	return (data);
+}
+
+char	*find_cmd(t_data *d)
+{
+	t_liste	*tmp;
+	t_token	*tmp_t;
+	char	*ret;
+
+	tmp = d->list;
+	ret = ft_strdup("");
+	while (tmp)
+	{
+		tmp_t = tmp->token;
+		while (tmp_t)
+		{
+			if (tmp_t->type == CMD || tmp_t->type == BUILTIN)
+				ret = ft_strjoin(ret, tmp_t->content);
+			tmp_t = tmp_t->next;
+		}
+		tmp = tmp->next;
+	}
+	return (ret);
+}
+
+void	init_args(t_data *d)
+{
+	t_liste	*tmp;
+	t_token	*tmp_t;
+	char	*ret;
+
+	ret = find_cmd(d);
+	tmp = d->list;
+	d->list->args = ft_split(ret, ' ');
+	while (tmp)
+	{
+		tmp_t = tmp->token;
+		while (tmp_t)
+		{
+			if (tmp_t->type != MET && tmp_t->type != CMD
+				&& tmp_t->type != BUILTIN)
+				ret = ft_strjoin(ret, ft_strjoin(" ", tmp_t->content));
+			tmp_t = tmp_t->next; 
+		}
+		tmp = tmp->next;
+	}
+	d->list->args = ft_split(ret, ' ');
+	free(ret);
 }

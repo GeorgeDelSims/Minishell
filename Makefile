@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gsims <gsims@student.42.fr>                +#+  +:+       +#+         #
+#    By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/06 11:36:48 by georgesims        #+#    #+#              #
-#    Updated: 2024/03/21 11:55:38 by gsims            ###   ########.fr        #
+#    Updated: 2024/03/26 10:39:55 by mathieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,9 @@ SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(UTILS)))\
 	$(addprefix $(SRCS_DIR)/$(ENV_DIR)/, $(addsuffix .c, $(ENV)))\
 	$(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(CHECKER)))\
 
+BUILTIN_DIRS = pwd #echo env cd unset export exit
+BUILTIN_MAKEFILES = $(addsuffix /Makefile, $(BUILTIN_DIRS))
+
 # Convert source file names to object file names in the OBJ_DIRS directory
 OBJ_DIR = obj
 OBJ_DIRS = $(OBJ_DIR) $(addprefix $(OBJ_DIR)/, $(PARSING_DIR)) $(addprefix $(OBJ_DIR)/, $(ENV_DIR))
@@ -43,7 +46,7 @@ $(OBJS): | $(OBJ_DIRS)
 
 # Rule to build the executable: depends on object directory, object files, and the LIBFT library
 # Compiles the object files and LIBFT library into the executable, linking with readline library
-all: $(NAME)
+all: $(NAME) $(BUILTIN_DIRS)
 
 $(LIBFT):
 	$(MAKE) -C ./libft
@@ -61,6 +64,9 @@ $(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c
 	
 # $< is the name of the prerequisite (the .c file), and $@ is the name of the target (the .o file)
 
+$(BUILTIN_DIRS): %:
+	$(MAKE) -C srcs/builtins/$@
+
 clean:
 	$(MAKE) clean -C ./libft
 	rm -rf $(OBJ_DIRS)
@@ -72,4 +78,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re $(BUILTIN_DIRS)
