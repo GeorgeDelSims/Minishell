@@ -1,0 +1,1 @@
+/Users/gsims/Library/Python/3.8/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Apple/usr/bin:/Users/gsims/Library/Python/3.8/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code:/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code

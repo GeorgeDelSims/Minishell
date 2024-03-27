@@ -2,6 +2,8 @@
 	"files.associations": {
 		"minishell.h": "c",
 		"__tuple": "c",
-		"array": "c"
+		"array": "c",
+		"__locale": "c",
+		"ios": "c"
 	}
 }

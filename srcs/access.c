@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   access.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:33:44 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/27 07:34:57 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/27 09:11:34 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,9 @@ void	init_paths(t_data *d, const char *envp[])
 			i++;
 		}
 		if (!d->list->cmd_path)
+		{
 			ft_error_syntax("command not found", d->list->token->content, 2);
-		else
-			init_args(d);
+			free_lists(d);
+		}
 	}
 }
