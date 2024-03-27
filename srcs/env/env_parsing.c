@@ -29,7 +29,7 @@ static char *get_env_str(t_data *data, char *line, int *i)
 		return (NULL);
 	ft_strlcpy(tmp, line + *i, next_word_size);
     if (get_env(data, tmp))
-        newstr = ft_strdup(get_env(data, tmp));
+        newstr = get_env(data, tmp);
     else
         newstr = NULL;
 	free(tmp);
@@ -79,12 +79,11 @@ static char *get_newline(t_data *data, char *line)
 	env_count = count_env(line);
 	data->env_parse_array = fill_env_parse_array(data, line);
     ft_print_array(data->env_parse_array);
-	newline = malloc(sizeof(char) * (ft_strlen(line) + count_chars_in_array(data->env_parse_array) + 1 + 2 * env_count));
+	newline = malloc(sizeof(char) * (ft_strlen(line) + count_chars_in_array(data->env_parse_array) + 1 + 200 * env_count)); // PROBLEM IS HERE
 	if (!newline)
 		return (NULL);
 	return (newline);
 }
-
 
 // replaces $USER by "gsims" or "mlepesqu" (quotation marks included) in order to tokenize
 static int replace_env_vars(t_data *data, int *row, int j, char **newline) 
@@ -100,8 +99,8 @@ static int replace_env_vars(t_data *data, int *row, int j, char **newline)
         j += ft_strlen(data->env_parse_array[*row]);
         j = add_quote(*newline, j);
         free(temp);
-        free(data->env_parse_array[*row]);
-        data->env_parse_array[*row] = NULL;
+        // free(data->env_parse_array[*row]);
+        // data->env_parse_array[*row] = NULL;
     }
     (*row)++; 
     data->quote = 0;
@@ -137,7 +136,7 @@ char    *include_env_vars(t_data *data, char *line)
             newline[j++] = line[i++];
     }
     newline[j] = '\0';
-    printf("newline : %s\n", newline);
-	free(data->env_parse_array);
+    // printf("newline : %s\n", newline);
+	// free(data->env_parse_array);
     return (newline);
 }

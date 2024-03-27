@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:33:44 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/27 11:00:43 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/27 11:22:29 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	init_builtin(t_data *d)
 	// 	unset_cmd(d);
 	else if (ft_strcmp(d->list->cmd, "export") == 0)
 		export_cmd(d);
-	// else if (ft_strcmp(d->list->cmd, "exit") == 0)
-	// 	exit_cmd(d);
+	else if (ft_strcmp(d->list->cmd, "exit") == 0)
+		ft_exit(d, "exit", EXIT_SUCCESS);
 }
 
 void	init_paths(t_data *d, const char *envp[])
