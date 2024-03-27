@@ -4,6 +4,10 @@
 		"__tuple": "c",
 		"array": "c",
 		"__locale": "c",
-		"ios": "c"
+		"ios": "c",
+		"iterator": "c",
+		"string": "c",
+		"string_view": "c",
+		"vector": "c"
 	}
 }
