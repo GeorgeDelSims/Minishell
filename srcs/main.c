@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:26:25 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/27 10:55:37 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/27 11:29:24 by mlepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ int	main(int ac, char *av[], const char *envp[])
 			break;
         if (line && *line) 
         {
-            if (ft_strncmp(line, "exit", ft_strlen("exit")) == 0 && ft_quit(line)) // temporaire
-                break ;
             add_history(line);
             tmp = line;
             line = include_env_vars(data, tmp);

@@ -6,7 +6,7 @@
 /*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/27 11:05:25 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/27 11:40:03 by mlepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,9 +127,7 @@ int			skip_spaces(char *line, int index);
 int			add_quote(char *line, int j);
 
 /*----exec.c----*/
-void		ft_execute(t_data *data, char *const *envp);
 void		ft_exec(t_data *data, char *const *envp);
-int			ft_access(t_data *data);
 void	    here_doc(t_data *d);
 
 /*----builtin.c----*/
@@ -138,7 +136,7 @@ void		cd_cmd(t_data *d);
 void		export_cmd(t_data *data);
 void		echo_cmd(t_data *data);
 void		unset_cmd(t_data *data);
-void		exit_cmd(t_data *d);
+void		env_cmd(t_data *d);
 
 /*--PARSING--*/
 /*----parsing.c----*/
@@ -162,9 +160,8 @@ char 		*get_env(t_data *data, char *var);
 int      	count_env(char *line);
 
 /*----env_parsing.c----*/
-char			*include_env_vars(t_data *data, char *line);
-void			init_paths(t_data *d, const char *envp[]);
-void		init_builtin(t_data *d);
+char		*include_env_vars(t_data *data, char *line);
+void		init_paths(t_data *d, const char *envp[]);
 
 /*----error.c----*/
 void		ft_error(const char *msg);
