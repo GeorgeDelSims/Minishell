@@ -6,21 +6,25 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 09:48:22 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/21 12:07:34 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/27 09:35:03 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 // Joins the given token to line (for use in case of unclosed quotes)
+// It also adds a newline character for each newline typed into the stdin
 static void	join_token_to_line(char **token, char *line)
 {
 	char *temp;
+	char *token_with_newline;
 
 	temp = *token;
-	*token = ft_strjoin(temp, line);
+	token_with_newline = ft_strjoin(temp, "\n");
 	free(temp);
-	temp = NULL;
+	temp = token_with_newline;
+	*token = ft_strjoin(temp , line);
+	free(temp);
 }
 
 // Does what it says on the box

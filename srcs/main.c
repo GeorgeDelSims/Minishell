@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:26:25 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/27 09:13:01 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/27 10:55:37 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	main(int ac, char *av[], const char *envp[])
             free(line);
             free_lists(data);
         }
-        // data->cmds->cmd = line; // Juste pour tester la fonction Exec
     }
     rl_clear_history();
     return (EXIT_SUCCESS);

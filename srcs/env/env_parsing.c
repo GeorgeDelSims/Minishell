@@ -78,6 +78,7 @@ static char *get_newline(t_data *data, char *line)
 
 	env_count = count_env(line);
 	data->env_parse_array = fill_env_parse_array(data, line);
+    ft_print_array(data->env_parse_array);
 	newline = malloc(sizeof(char) * (ft_strlen(line) + count_chars_in_array(data->env_parse_array) + 1 + 2 * env_count));
 	if (!newline)
 		return (NULL);
@@ -93,19 +94,19 @@ static int replace_env_vars(t_data *data, int *row, int j, char **newline)
     j = add_quote(*newline, j);
     (*newline)[j] = '\0';
     temp = *newline;
-    *newline = ft_strjoin(temp, data->env_parse_array[*row]); // ABORT TRAP HERE FOR SOME REASON
-    if (temp)
+    if (temp && data->env_parse_array[*row])
+    {
+        *newline = ft_strjoin(temp, data->env_parse_array[*row]); // ABORT TRAP HERE FOR SOME REASON --> Sorted
+        j += ft_strlen(data->env_parse_array[*row]);
+        j = add_quote(*newline, j);
         free(temp);
-    j += ft_strlen(data->env_parse_array[*row]);
-    j = add_quote(*newline, j);
-    if (data->env_parse_array[*row])
         free(data->env_parse_array[*row]);
-    data->env_parse_array[*row] = NULL;
+        data->env_parse_array[*row] = NULL;
+    }
     (*row)++; 
     data->quote = 0;
     return (j);
 }
-
 
 // Main function that includes the environment variables in the newline 
 char    *include_env_vars(t_data *data, char *line)
@@ -124,7 +125,7 @@ char    *include_env_vars(t_data *data, char *line)
         if (line[i] == '$')
         {
             i = skip_spaces(line, i);
-            if (data->env_parse_array[row] != NULL)
+            if (data->env_parse_array && data->env_parse_array[row] && newline)
                 j = replace_env_vars(data, &row, j, &newline);
             else
             {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/27 07:23:12 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/27 10:54:09 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ void		pwd_cmd(void);
 void		cd_cmd(t_data *d);
 void		export_cmd(t_data *data);
 void		echo_cmd(t_data *data);
-
+void		unset_cmd(t_data *data);
 
 /*--PARSING--*/
 /*----parsing.c----*/
