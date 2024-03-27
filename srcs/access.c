@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:33:44 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/27 09:11:34 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/27 11:00:43 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void	init_paths(t_data *d, const char *envp[])
 		if (!d->list->cmd_path)
 		{
 			ft_error_syntax("command not found", d->list->token->content, 2);
-			free_lists(d);
 		}
 	}
 }

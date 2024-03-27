@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 11:02:05 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/26 15:28:43 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/27 10:59:11 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	free_lists(t_data *data)
 	t_token		*next_token;
 		
 	curr_list = data->list;
+	if (!curr_list)
+		return ;
 	while (curr_list)
 	{
 		curr_token = curr_list->token;
