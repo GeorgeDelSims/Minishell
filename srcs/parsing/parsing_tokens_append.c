@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_tokens2.c                                  :+:      :+:    :+:   */
+/*   parsing_tokens_append.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:07:29 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/21 09:52:01 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/27 09:20:30 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	append_token(t_liste *list, char *subline, int start_of_token, int end_of_t
 	ft_add_back(&list->token, ft_token_new(token));
 }
 
-
+// Appends a token onto the linked list of tokens (for the unclosed quotes situation)
 void	append_token_simple(t_liste *list, char *token, int *quote)
 {
 	if (quote != NULL)
