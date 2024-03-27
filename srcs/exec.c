@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:26:30 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/26 13:06:48 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/27 07:48:10 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_exec(t_data *data, char *const *envp)
 {
 	t_liste	*tmp;
 
+	init_args(data);
 	tmp = data->list;
 	while (tmp)
 	{

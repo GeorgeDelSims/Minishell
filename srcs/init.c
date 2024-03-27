@@ -6,7 +6,7 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:10:58 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/20 14:09:36 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/27 08:37:26 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	init_args(t_data *d)
 		while (tmp_t)
 		{
 			if (tmp_t->type != MET && tmp_t->type != CMD
-				&& tmp_t->type != BUILTIN)
+				&& tmp_t->type != BUILTIN && tmp_t->type != FILENAME)
 				ret = ft_strjoin(ret, ft_strjoin(" ", tmp_t->content));
 			tmp_t = tmp_t->next; 
 		}

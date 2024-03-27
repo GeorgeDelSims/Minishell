@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:27:47 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/26 15:47:56 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/27 07:16:53 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 // returns a 0 if the arg is not valid for the export command, 1 if it is 
 static int		is_valid_export_arg(char *arg)
 {
-	int	len;
+	//int	len;
 	int	i;
 
 	printf("HERE\n");
 	if (!arg)
 		return (0);
-	len = ft_strlen(arg);
+	//len = ft_strlen(arg);
 	if (arg[0] == '=')
 		return (0);
 	i = 1;
