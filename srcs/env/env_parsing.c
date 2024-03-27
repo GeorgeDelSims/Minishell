@@ -13,40 +13,6 @@
 
 #include "../../includes/minishell.h"
 
-// get the next variable in the line (=any number of chars that come after a $)
-// The dollar sign is included in the variable in this case if line[i] == $
-static char *get_env_var(char *line, int i)
-{
-    char    *var;
-    int     next_word_size; 
-    
-	next_word_size = get_next_word_size(line, i) + 1;
-	var = malloc(sizeof(char) * next_word_size);
-	if (!var)
-		return (NULL);
-	ft_strlcpy(var, line + i, next_word_size);
-    return (var);
-}
-
-// check if the variables are valid and replace them by the corresponding string
-// replace them by null if they are invalid variables (i.e not in the envp[])
-static char *get_env_str(t_data *data, char *line, int *i)
-{
-    char    *newstr;
-    char    *tmp;
-    
-	newstr = NULL;
-	(*i)++;
-    tmp = get_env_var(line, *i);
-    if (get_env(data, tmp))
-        newstr = get_env(data, tmp);
-    else
-        newstr = NULL;
-	*i += ft_strlen(tmp) - 1;
-	free(tmp);
-	tmp = NULL;
-    return (newstr);
-}
 
 // For each dollar sign in the original line, 
 // this function creates an element in the env_parse_array 
@@ -120,7 +86,7 @@ static char *get_newline(t_data *data, char *line)
 
 	env_count = count_env(line);
 	data->env_parse_array = fill_env_parse_array(data, line);
-    ft_print_array(data->env_parse_array);
+    // ft_print_array(data->env_parse_array);
 	newline = malloc(sizeof(char) * (get_new_string_size(data, line))); // PROBLEM IS HERE
 	if (!newline)
 		return (NULL);

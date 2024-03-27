@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:20:58 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/26 10:41:53 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/27 15:18:20 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	ft_print_lists(t_data *data)
 	while (curr_list)
 	{
 		curr_token = curr_list->token;
-		if (curr_list->subline)
-			printf("subline : %s\n", curr_list->subline);
+		// if (curr_list->subline)
+			// printf("subline : %s\n", curr_list->subline);
 		while (curr_token)
 		{
 			if (curr_token->content)

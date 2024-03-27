@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:26:25 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/27 12:58:52 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/27 15:22:40 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	main(int ac, char *av[], const char *envp[])
             add_history(line);
             tmp = line;
             line = include_env_vars(data, tmp);
+            printf("line : %s\n", line);
             free(tmp);
             parse(line, data);
             ft_exec(data, (char *const*)envp);

@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/27 14:41:51 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/27 15:15:45 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,9 @@ void		handle_token_create_end(t_liste *list, char *subline, int *i, int *quote, 
 char 		*get_env(t_data *data, char *var);
 int      	count_env(char *line);
 int			is_in_env(t_data *data, char *var);
+char 		*get_env_var(char *line, int i);
+char 		*get_env_str(t_data *data, char *line, int *i);
+
 
 /*----env_parsing.c----*/
 char		*include_env_vars(t_data *data, char *line);
