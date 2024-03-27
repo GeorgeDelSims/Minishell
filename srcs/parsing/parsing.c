@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:57:15 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/27 09:42:10 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/27 13:15:32 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static  int		pipe_count(char *line)
 	int	i;
 	int	pipe_count;
 	
+	if (!line)
+		return (0);
 	i = 0;
 	pipe_count = 0;
 	while (line[i])
@@ -55,7 +57,7 @@ static void	create_sublines(char *line, t_data *data)
 	
 	number_of_sublines = pipe_count(line) + 1;
 	i = 0;
-	printf("line in create subline : %s\n", line);
+	// printf("line in create subline : %s\n", line);
 	while (number_of_sublines > 0)
 	{
 		subline_temp = (char *)malloc(sizeof(char) * count_to_next_pipe(line, i) + 1);

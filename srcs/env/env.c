@@ -6,13 +6,13 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 12:04:27 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/20 12:16:38 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/27 14:41:17 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	is_in_env(t_data *data, char *var)
+int	is_in_env(t_data *data, char *var)
 {
 	int		i;
 	
