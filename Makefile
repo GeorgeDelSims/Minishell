@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+         #
+#    By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/06 11:36:48 by georgesims        #+#    #+#              #
-#    Updated: 2024/03/27 11:40:56 by mlepesqu         ###   ########.fr        #
+#    Updated: 2024/03/27 14:06:26 by mathieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ $(OBJS): | $(OBJ_DIRS)
 
 # Rule to build the executable: depends on object directory, object files, and the LIBFT library
 # Compiles the object files and LIBFT library into the executable, linking with readline library
+
 all: $(NAME)
 
 $(LIBFT):

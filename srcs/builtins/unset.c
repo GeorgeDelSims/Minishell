@@ -3,21 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 10:35:31 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/27 11:41:12 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/27 13:55:41 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+static int	len_until_equal(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != 61)
+		i++;
+	return (i);
+}
 
 // replicates the unset command -> remove environment variable into the envp 
 void	unset_cmd(t_data *data)
 {
 	char		**new_array;
 	int			array_size;
+	int			len;
 	int			i;
 	int			j;
 
@@ -29,13 +39,14 @@ void	unset_cmd(t_data *data)
 		ft_exit(data, "malloc error in export_cmd\n", EXIT_FAILURE);
 	i = 0;
 	j = 0;
-	while (j < array_size)
+	while (i < array_size)
 	{
-		if (data->envp_array[i] == data->list->args[1])
-			i++;
-		new_array[j++] = ft_strdup(data->envp_array[i++]);
+		len = len_until_equal(data->envp_array[i]);
+		if (ft_strncmp(data->envp_array[i], data->list->args[1], len) != 0)
+			new_array[j++] = ft_strdup(data->envp_array[i]);
+		i++;
 	}
 	new_array[j] = NULL;
+	ft_free_array(data->envp_array);
 	data->envp_array = new_array;
-	ft_print_array(data->envp_array);
 }
