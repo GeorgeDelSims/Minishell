@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:27:47 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/27 07:16:53 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/27 10:34:44 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static int		is_valid_export_arg(char *arg)
 	//int	len;
 	int	i;
 
-	printf("HERE\n");
 	if (!arg)
 		return (0);
 	//len = ft_strlen(arg);
@@ -59,7 +58,6 @@ void	export_cmd(t_data *data)
 	}
 	new_array[i] = ft_strdup(data->list->args[1]);
 	new_array[i + 1] = NULL;
-	ft_free_array(data->envp_array);
 	data->envp_array = new_array;
 	ft_print_array(data->envp_array);
 }

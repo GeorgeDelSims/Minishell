@@ -78,6 +78,7 @@ static char *get_newline(t_data *data, char *line)
 
 	env_count = count_env(line);
 	data->env_parse_array = fill_env_parse_array(data, line);
+    ft_print_array(data->env_parse_array);
 	newline = malloc(sizeof(char) * (ft_strlen(line) + count_chars_in_array(data->env_parse_array) + 1 + 2 * env_count));
 	if (!newline)
 		return (NULL);
@@ -93,11 +94,9 @@ static int replace_env_vars(t_data *data, int *row, int j, char **newline)
     j = add_quote(*newline, j);
     (*newline)[j] = '\0';
     temp = *newline;
-    // printf("temp : %s\n", temp);
-    // printf("data->env_parse_array[*row] : %s\n", data->env_parse_array[*row]);
     if (temp && data->env_parse_array[*row])
     {
-        *newline = ft_strjoin(temp, data->env_parse_array[*row]); // ABORT TRAP HERE FOR SOME REASON
+        *newline = ft_strjoin(temp, data->env_parse_array[*row]); // ABORT TRAP HERE FOR SOME REASON --> Sorted
         j += ft_strlen(data->env_parse_array[*row]);
         j = add_quote(*newline, j);
         free(temp);
