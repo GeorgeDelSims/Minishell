@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   access.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:33:44 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/26 15:32:46 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/27 07:34:57 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	init_builtin(t_data *d)
 {
 	if (ft_strcmp(d->list->cmd, "pwd") == 0)
 		pwd_cmd();
-	// else if (ft_strcmp(d->list->cmd, "echo") == 0)
-	// 	echo_cmd(d);
+	else if (ft_strcmp(d->list->cmd, "echo") == 0)
+		echo_cmd(d);
 	// else if (ft_strcmp(d->list->cmd, "env") == 0)
 	// 	env_cmd(d);
 	else if (ft_strcmp(d->list->cmd, "cd") == 0)

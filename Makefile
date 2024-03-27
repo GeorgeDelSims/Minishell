@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gsims <gsims@student.42.fr>                +#+  +:+       +#+         #
+#    By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/06 11:36:48 by georgesims        #+#    #+#              #
-#    Updated: 2024/03/26 15:33:26 by gsims            ###   ########.fr        #
+#    Updated: 2024/03/27 07:23:35 by mathieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ UTILS = listutils listutils2 error free print_utils utils
 PARSING = parsing parsing_tokens parsing_tokens_append parsing_utils unclosed_quotes
 ENV = env env_parsing
 MAIN = main init exec init_types here_doc update_list access 
-BUILTINS = pwd cd export
+BUILTINS = pwd cd export echo
 
 LIBFT = ./libft/libft.a
 READLINE_DIR = $(HOME)/.brew/opt/readline/include
