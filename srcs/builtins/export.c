@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:27:47 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/27 10:52:53 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/27 13:29:13 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,5 @@ void	export_cmd(t_data *data)
 	}
 	new_array[i] = ft_strdup(data->list->args[1]);
 	new_array[i + 1] = NULL;
-	data->envp_array = new_array; // should we free envp_array before this line ?? 
-	ft_print_array(data->envp_array);
+	data->envp_array = new_array; // should we free envp_array before this line ??
 }
