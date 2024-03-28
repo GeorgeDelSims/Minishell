@@ -6,11 +6,10 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/27 15:15:45 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/28 09:29:37 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
 # define MINISHELL_H
 
 /*- INCLUDES -*/
@@ -127,9 +126,7 @@ int			skip_spaces(char *line, int index);
 int			add_quote(char *line, int j);
 
 /*----exec.c----*/
-void		ft_execute(t_data *data, char *const *envp);
 void		ft_exec(t_data *data, char *const *envp);
-int			ft_access(t_data *data);
 void	    here_doc(t_data *d);
 
 /*----builtin.c----*/
@@ -138,7 +135,7 @@ void		cd_cmd(t_data *d);
 void		export_cmd(t_data *data);
 void		echo_cmd(t_data *data);
 void		unset_cmd(t_data *data);
-void		exit_cmd(t_data *d);
+void		env_cmd(t_data *d);
 
 /*--PARSING--*/
 /*----parsing.c----*/

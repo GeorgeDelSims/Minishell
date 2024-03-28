@@ -6,7 +6,7 @@
 #    By: gsims <gsims@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/06 11:36:48 by georgesims        #+#    #+#              #
-#    Updated: 2024/03/27 13:16:02 by gsims            ###   ########.fr        #
+#    Updated: 2024/03/28 09:30:00 by gsims            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ CHECKER = check
 UTILS = listutils listutils2 error free print_utils utils
 PARSING = parsing parsing_tokens parsing_tokens_append parsing_utils unclosed_quotes
 ENV = env env_parsing
-MAIN = main init exec init_types here_doc update_list access 
-BUILTINS = pwd cd export echo exit
+MAIN = main init exec init_types here_doc update_list
+BUILTINS = pwd cd export echo env unset
 
 LIBFT = ./libft/libft.a
 READLINE_DIR = $(HOME)/.brew/opt/readline/include
@@ -46,6 +46,7 @@ $(OBJS): | $(OBJ_DIRS)
 
 # Rule to build the executable: depends on object directory, object files, and the LIBFT library
 # Compiles the object files and LIBFT library into the executable, linking with readline library
+
 all: $(NAME)
 
 $(LIBFT):
