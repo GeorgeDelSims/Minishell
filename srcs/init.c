@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:10:58 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/27 12:07:49 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/28 09:30:30 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 void	init_env(t_data *data, const char *envp[])
 {
 	data->envp_array = (char **)envp;
-	// ft_print_array(data->envp_array);
 }
 
 

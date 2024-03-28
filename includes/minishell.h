@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/27 11:40:03 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/28 09:29:37 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
 # define MINISHELL_H
 
 /*- INCLUDES -*/
@@ -158,10 +157,15 @@ void		handle_token_create_end(t_liste *list, char *subline, int *i, int *quote, 
 /*----env.c----*/
 char 		*get_env(t_data *data, char *var);
 int      	count_env(char *line);
+int			is_in_env(t_data *data, char *var);
+char 		*get_env_var(char *line, int i);
+char 		*get_env_str(t_data *data, char *line, int *i);
+
 
 /*----env_parsing.c----*/
 char		*include_env_vars(t_data *data, char *line);
 void		init_paths(t_data *d, const char *envp[]);
+void		init_builtin(t_data *d);
 
 /*----error.c----*/
 void		ft_error(const char *msg);

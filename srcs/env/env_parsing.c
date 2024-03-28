@@ -14,30 +14,6 @@
 #include "../../includes/minishell.h"
 
 
-// Description needed
-static char *get_env_str(t_data *data, char *line, int *i)
-{
-    char    *newstr;
-    char    *tmp;
-    int     next_word_size;
-    
-	newstr = NULL;
-	(*i)++;
-	next_word_size = get_next_word_size(line, *i) + 1;
-	tmp = malloc(sizeof(char) * next_word_size);
-	if (!tmp)
-		return (NULL);
-	ft_strlcpy(tmp, line + *i, next_word_size);
-    if (get_env(data, tmp))
-        newstr = ft_strdup(get_env(data, tmp));
-    else
-        newstr = NULL;
-	free(tmp);
-	tmp = NULL;
-	*i += next_word_size - 1;
-    return (newstr);
-}
-
 // For each dollar sign in the original line, 
 // this function creates an element in the env_parse_array 
 // in which it copies the string relative to the environment variable called by the dollar sign 
@@ -70,6 +46,38 @@ static char **fill_env_parse_array(t_data *data, char *line)
     return (array); 
 }
 
+
+// Substract the size of the env variable or anything that comes after the $ sign 
+// and add the size of the env variable value (+ quotes)
+int get_new_string_size(t_data *data, char *line) 
+{
+    int     total_size;
+    int     i;
+    int     env_var_length;
+    char    *var;
+    int     row;
+
+    i = 0;
+    total_size = ft_strlen(line) + 1;
+    row = 0;
+    while (line[i]) 
+    {
+        if (line[i] == '$') 
+        {
+            var = get_env_var(line, i);
+            if (is_in_env(data, var) != 0)
+                row++;
+            env_var_length = ft_strlen(data->env_parse_array[row]) + 2;
+            total_size += env_var_length - ft_strlen(var);
+            i += ft_strlen(var);
+            free(var);
+        } 
+        else
+            i++;
+    }
+    return (total_size);
+}
+
 // checks the correct size and allocates memory for newline (to replace line) in order to accommodate env variable values
 static char *get_newline(t_data *data, char *line)
 {
@@ -78,13 +86,12 @@ static char *get_newline(t_data *data, char *line)
 
 	env_count = count_env(line);
 	data->env_parse_array = fill_env_parse_array(data, line);
-    ft_print_array(data->env_parse_array);
-	newline = malloc(sizeof(char) * (ft_strlen(line) + count_chars_in_array(data->env_parse_array) + 1 + 2 * env_count));
+    // ft_print_array(data->env_parse_array);
+	newline = malloc(sizeof(char) * (get_new_string_size(data, line))); // PROBLEM IS HERE
 	if (!newline)
 		return (NULL);
 	return (newline);
 }
-
 
 // replaces $USER by "gsims" or "mlepesqu" (quotation marks included) in order to tokenize
 static int replace_env_vars(t_data *data, int *row, int j, char **newline) 
@@ -96,12 +103,12 @@ static int replace_env_vars(t_data *data, int *row, int j, char **newline)
     temp = *newline;
     if (temp && data->env_parse_array[*row])
     {
-        *newline = ft_strjoin(temp, data->env_parse_array[*row]); // ABORT TRAP HERE FOR SOME REASON --> Sorted
+        *newline = ft_strjoin(temp, data->env_parse_array[*row]); 
         j += ft_strlen(data->env_parse_array[*row]);
         j = add_quote(*newline, j);
         free(temp);
-        free(data->env_parse_array[*row]);
-        data->env_parse_array[*row] = NULL;
+        // free(data->env_parse_array[*row]);
+        // data->env_parse_array[*row] = NULL;
     }
     (*row)++; 
     data->quote = 0;
@@ -137,7 +144,5 @@ char    *include_env_vars(t_data *data, char *line)
             newline[j++] = line[i++];
     }
     newline[j] = '\0';
-    printf("newline : %s\n", newline);
-	free(data->env_parse_array);
     return (newline);
 }
