@@ -6,7 +6,7 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 11:05:02 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/27 07:34:05 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/28 14:29:34 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ void	what_is_this(t_token *token)
 
 int	is_builtin(char *content)
 {
-	if (!(ft_strncmp(content, "echo", 4)) || !(ft_strncmp(content, "env", 3))
-		|| !(ft_strncmp(content, "pwd", 3)) || !(ft_strncmp(content, "cd", 2))
-		|| !(ft_strncmp(content, "unset", 5))
-		|| !(ft_strncmp(content, "export", 6))
-		|| !(ft_strncmp(content, "exit", 4)))
+	if (!(ft_strcmp(content, "echo")) || !(ft_strcmp(content, "env"))
+		|| !(ft_strcmp(content, "pwd")) || !(ft_strcmp(content, "cd"))
+		|| !(ft_strcmp(content, "unset"))
+		|| !(ft_strcmp(content, "export"))
+		|| !(ft_strcmp(content, "exit")))
 		return (BUILTIN);
 	else
 		return (CMD);
