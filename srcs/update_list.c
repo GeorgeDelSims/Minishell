@@ -6,7 +6,7 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:59:36 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/26 10:42:05 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/27 14:44:30 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,24 @@ void	update_standards(t_data *data, t_token *token)
 
 	t = token;
 	d = data;
-	if (ft_strncmp(t->content, "<", 1) == 0)
+	if (ft_strcmp(t->content, "<") == 0)
 	{
 		d->list->in = open(t->next->content, O_RDONLY);
 		if (d->list->in == -1)
 			ft_error_syntax("No such file or directory", t->next->content, 2);
 	}
-	else if (ft_strncmp(t->content, ">", 1) == 0)
+	else if (ft_strcmp(t->content, ">") == 0)
 	{
 		d->list->out = open(t->next->content, O_WRONLY
 				| O_CREAT | O_TRUNC, 0644);
 		if (d->list->out == -1)
 			ft_error_syntax("No such file or directory", t->next->content, 2);
 	}
-	else if (ft_strncmp(t->content, ">>", 2) == 0)
+	else if (ft_strcmp(t->content, ">>") == 0)
 	{
-		d->list->in = open(t->next->content, O_WRONLY
+		d->list->out = open(t->next->content, O_WRONLY
 				| O_CREAT | O_APPEND, 0644);
-		if (d->list->in == -1)
+		if (d->list->out == -1)
 			ft_error_syntax("No such file or directory", t->next->content, 2);
 	}
 }
