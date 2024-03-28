@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:27:47 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/28 09:31:44 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/28 11:07:40 by mlepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,7 @@ void	export_cmd(t_data *data)
 	if (!data->list->args || !data->list->args[1])
 		return ;
 	if (!data || !is_valid_export_arg(data->list->args[1]) || get_array_size(data->list->args) < 2)
-	{
-		ft_exit(data, "not a valid identifier.\n", EXIT_FAILURE);
-	}
+		return ;
 	array_size = get_array_size(data->envp_array);
 	new_array = malloc(sizeof(char *) * (array_size + 2));
 	if (!new_array)
@@ -58,7 +56,7 @@ void	export_cmd(t_data *data)
 	}
 	new_array[i] = ft_strdup(data->list->args[1]);
 	new_array[i + 1] = NULL;
-	ft_free_array(data->envp_array);
+	//ft_free_array(data->envp_array);
 	data->envp_array = new_array; // should we free envp_array before this line ?? 
 	// ft_print_array(data->envp_array);
 }
