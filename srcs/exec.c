@@ -6,7 +6,7 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:26:30 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/28 08:00:12 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/03/28 09:24:50 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ void	init_paths(t_data *d, const char *envp[])
 
 	i = 0;
 	d->bin_paths = ft_split(find_path(envp), ':');
-	if (d->list->cmd)
+	if (access(d->list->cmd, X_OK) == 0)
+		d->list->cmd_path = ft_strdup(d->list->cmd);
+	else if (d->list->cmd)
 	{
 		while (d->bin_paths[i])
 		{
@@ -46,9 +48,7 @@ void	init_paths(t_data *d, const char *envp[])
 			i++;
 		}
 		if (!d->list->cmd_path)
-		{
 			ft_error_syntax("command not found", d->list->token->content, 2);
-		}
 	}
 }
 
