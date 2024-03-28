@@ -6,7 +6,7 @@
 /*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 13:38:29 by mlepesqu          #+#    #+#             */
-/*   Updated: 2024/03/28 12:02:44 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/28 12:07:51 by mlepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,5 @@ void	cd_cmd(t_data *d)
 		d->pwd = ft_strdup(getenv("HOME"));
 	if (chdir(d->pwd) == -1 && d->list->token->next->type != MET)
 		ft_error_syntax("No such file or directory", d->list->token->next->content, 3);
-
 	free(d->pwd);
 }
