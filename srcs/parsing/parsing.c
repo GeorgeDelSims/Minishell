@@ -6,14 +6,14 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:57:15 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/27 13:15:32 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/28 13:22:48 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 // Count the number of pipes in a line
-static  int		pipe_count(char *line)
+static  int		pipe_count(t_data *data, char *line)
 {
 	int	i;
 	int	pipe_count;
@@ -28,6 +28,7 @@ static  int		pipe_count(char *line)
 			pipe_count++;
 		i++;
 	}
+	data->number_of_pipes = pipe_count;
 	return (pipe_count);
 }
 
@@ -55,7 +56,7 @@ static void	create_sublines(char *line, t_data *data)
 	int			number_of_sublines;
 	char 		*subline_temp;
 	
-	number_of_sublines = pipe_count(line) + 1;
+	number_of_sublines = pipe_count(data, line) + 1;
 	i = 0;
 	// printf("line in create subline : %s\n", line);
 	while (number_of_sublines > 0)

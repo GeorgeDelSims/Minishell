@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/28 12:09:26 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/28 13:28:50 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,9 @@ char 		*get_env_str(t_data *data, char *line, int *i);
 char		*include_env_vars(t_data *data, char *line);
 void		init_paths(t_data *d, const char *envp[]);
 void		init_builtin(t_data *d);
+
+/*----pipe.c----*/
+int			run_minishell(t_data *data, const char **envp);
 
 /*----error.c----*/
 void		ft_error(const char *msg);

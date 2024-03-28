@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:26:25 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/28 09:30:53 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/28 13:28:43 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int	main(int ac, char *av[], const char *envp[])
             printf("line : %s\n", line);
             free(tmp);
             parse(line, data);
-            ft_exec(data, (char *const*)envp);
+            run_minishell(data, envp);
+            // ft_exec(data, (char *const*)envp);
             free(line);
             free_lists(data);
         }
