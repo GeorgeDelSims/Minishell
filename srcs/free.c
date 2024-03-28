@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 11:02:05 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/27 11:40:13 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/28 12:14:06 by mlepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,14 @@ void	free_lists(t_data *data)
 // Free all recorded data from structures
 void	free_all(t_data *data)
 {
+	if (data->oldpwd)
+		free(data->oldpwd);
 	if (data->bin_paths)
 		ft_free_array(data->bin_paths);
-	// if (data->envp_array)
-		// ft_free_array(data->envp_array);
-	// if (data->env_parse_array)
-		// ft_free_array(data->env_parse_array);
+	if (data->envp_array)
+		ft_free_array(data->envp_array);
+	if (data->env_parse_array)
+		ft_free_array(data->env_parse_array);
 	if (data->list)
 		free_lists(data);
 	if (data->hdoc)
