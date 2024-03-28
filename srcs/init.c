@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:10:58 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/28 09:30:30 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/28 12:02:13 by mlepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ t_data	*init_minishell(int ac, char *av[], const char *envp[])
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
 		ft_error("malloc error on data structure");
+	data->oldpwd = (char *)malloc(2000 * sizeof(char));
+	data->pwd = NULL;
 	init_env(data, envp);
 	// init_binpaths(data);
 	return (data);
