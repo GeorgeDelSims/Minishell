@@ -81,10 +81,8 @@ int get_new_string_size(t_data *data, char *line)
 // checks the correct size and allocates memory for newline (to replace line) in order to accommodate env variable values
 static char *get_newline(t_data *data, char *line)
 {
-    int     env_count;
     char    *newline;
 
-	env_count = count_env(line);
 	data->env_parse_array = fill_env_parse_array(data, line);
     // ft_print_array(data->env_parse_array);
 	newline = malloc(sizeof(char) * (get_new_string_size(data, line))); // PROBLEM IS HERE
