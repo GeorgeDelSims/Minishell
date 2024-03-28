@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/28 09:29:37 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/28 08:05:50 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ typedef struct s_env
 // Main data structure 
 typedef struct s_data
 {
-	//char			**envp;
+	char			*oldpwd;
+	char			*pwd;
 	char			**bin_paths;
 	t_liste			*list; // listes chainees de tokens
 	t_list			*hdoc; // liste chainee (content + next) -> pour garder le contenu de heredoc 
