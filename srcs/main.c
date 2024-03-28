@@ -40,8 +40,8 @@ int	main(int ac, char *av[], const char *envp[])
             printf("line : %s\n", line);
             free(tmp);
             parse(line, data);
-            ft_exec(data, (char *const*)envp);
-            printf("blabaalflsdfalfkaldfkadf");
+            run_minishell(data, envp);
+            // ft_exec(data, (char *const*)envp);
             free(line);
             free_lists(data);
         }
