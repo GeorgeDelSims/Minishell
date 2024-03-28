@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:36:45 by georgesims        #+#    #+#             */
-/*   Updated: 2024/03/28 10:12:42 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/28 12:09:26 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,9 @@ typedef struct s_data
 	t_list			*hdoc; // liste chainee (content + next) -> pour garder le contenu de heredoc 
 	char			**envp_array; // array  qui comprend toutes les var d'environnement pour exec
 	char      		**env_parse_array; // array qui ne comprend que les variables d'environnement relatives a la commande appelee
+	int				number_of_pipes;
 	int				quote;
-	int				fd[2];
+	int				(*fd)[2];
 }					t_data;
 
 /*- SRCS -*/

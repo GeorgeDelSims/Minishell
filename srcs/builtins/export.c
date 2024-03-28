@@ -6,7 +6,7 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:27:47 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/28 09:31:44 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/28 11:04:20 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	export_cmd(t_data *data)
 	}
 	new_array[i] = ft_strdup(data->list->args[1]);
 	new_array[i + 1] = NULL;
-	ft_free_array(data->envp_array);
+	// ft_free_array(data->envp_array);
 	data->envp_array = new_array; // should we free envp_array before this line ?? 
 	// ft_print_array(data->envp_array);
 }
