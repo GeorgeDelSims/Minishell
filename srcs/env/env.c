@@ -6,13 +6,13 @@
 /*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 12:04:27 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/20 12:16:38 by gsims            ###   ########.fr       */
+/*   Updated: 2024/03/27 15:15:52 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	is_in_env(t_data *data, char *var)
+int	is_in_env(t_data *data, char *var)
 {
 	int		i;
 	
@@ -56,4 +56,39 @@ int      count_env(char *line)
         i++;
     }
     return (count);
+}
+
+// get the next variable in the line (=any number of chars that come after a $)
+// The dollar sign is included in the variable in this case if line[i] == $
+char *get_env_var(char *line, int i)
+{
+    char    *var;
+    int     next_word_size; 
+    
+	next_word_size = get_next_word_size(line, i) + 1;
+	var = malloc(sizeof(char) * next_word_size);
+	if (!var)
+		return (NULL);
+	ft_strlcpy(var, line + i, next_word_size);
+    return (var);
+}
+
+// check if the variables are valid and replace them by the corresponding string
+// replace them by null if they are invalid variables (i.e not in the envp[])
+char *get_env_str(t_data *data, char *line, int *i)
+{
+    char    *newstr;
+    char    *tmp;
+    
+	newstr = NULL;
+	(*i)++;
+    tmp = get_env_var(line, *i);
+    if (get_env(data, tmp))
+        newstr = get_env(data, tmp);
+    else
+        newstr = NULL;
+	*i += ft_strlen(tmp) - 1;
+	free(tmp);
+	tmp = NULL;
+    return (newstr);
 }

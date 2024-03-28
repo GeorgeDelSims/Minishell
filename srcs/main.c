@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlepesqu <mlepesqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsims <gsims@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:26:25 by gsims             #+#    #+#             */
-/*   Updated: 2024/03/27 11:29:24 by mlepesqu         ###   ########.fr       */
+/*   Updated: 2024/03/28 09:30:53 by gsims            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	main(int ac, char *av[], const char *envp[])
             add_history(line);
             tmp = line;
             line = include_env_vars(data, tmp);
+            printf("line : %s\n", line);
             free(tmp);
             parse(line, data);
             ft_exec(data, (char *const*)envp);
